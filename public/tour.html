@@ -20,237 +20,301 @@
 </head>
 
 <body>
-	<div id="container"></div>
+	<div id="container">
 
-	<script type="text/javascript" src="libs/three.js"></script>
-	<script type="text/javascript" src="libs/jquery-3.3.1.js"></script>
-	<script type="text/javascript" src="libs/stats.min.js"></script>
-	<script type="text/javascript" src="data.js"></script>
-	<script type="text/javascript" src="libs/OrbitControls.js"></script>
-	<script type="text/javascript" src="libs/OrbitControls.js"></script>
+		<script type="text/javascript" src="libs/three.js"></script>
+		<script type="text/javascript" src="libs/jquery-3.3.1.js"></script>
+		<script type="text/javascript" src="libs/stats.min.js"></script>
+		<script type="text/javascript" src="data.js"></script>
+		<script type="text/javascript" src="libs/OrbitControls.js"></script>
+		<script type="text/javascript" src="libs/OrbitControls.js"></script>
+		<script type="text/javascript" src="libs/THREEx.FullScreen.js"></script>
 
-	<script>
-		var scene, camera, renderer, raycaster, CONTROLS;
-		var otherScene, otherCamera, raycaster, otherINTERSECTED;
-		var mouse = new THREE.Vector2();
-		var mouseForRaycasting = new THREE.Vector2(0, 0), INTERSECTED;
+		<script>
+			var scene, camera, renderer, raycaster, CONTROLS;
+			var otherScene, otherCamera, raycaster, otherINTERSECTED;
+			var mouse = new THREE.Vector2();
+			var mouseForRaycasting = new THREE.Vector2(0, 0), INTERSECTED;
 
-		var points = [], buttons = [];
-		var currentView, nextView;
+			var points = [], buttons = [];
+			var currentView, nextView;
 
-		var geometry, mesh, material, texture;
+			var geometry, mesh, material, texture;
 
-		var pointGeometry, pointMaterial, pointMesh;
-		var pointTexture;
+			var pointGeometry, pointMaterial, pointMesh;
+			var pointTexture;
 
-		var spriteGeometry, spriteMaterial, spriteMesh;
-		var spriteTexture;
+			var spriteGeometry, spriteMaterial, spriteMesh;
+			var spriteTexture;
 
 
-		init();
-		animate();
+			init();
+			animate();
 
-		function init() {
-			var container;
+			function init() {
+				var container;
 
-			container = document.getElementById("container");
-			document.body.appendChild(container);
+				container = document.getElementById("container");
+				document.body.appendChild(container);
 
-			scene = new THREE.Scene();
+				scene = new THREE.Scene();
 
-			camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1100); //fov, aspect, near, far
-			camera.position.set(0.1, 0, -0.2);
+				camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1100); //fov, aspect, near, far
+				camera.position.set(0.1, 0, -0.2);
 
-			raycaster = new THREE.Raycaster();
+				raycaster = new THREE.Raycaster();
 
-			geometry = new THREE.SphereGeometry(750, 50, 50);
-			pointGeometry = new THREE.PlaneGeometry(0.3, 0.3, 1, 1);
+				geometry = new THREE.SphereGeometry(750, 50, 50);
+				pointGeometry = new THREE.PlaneGeometry(0.3, 0.3, 1, 1);
 
-			for (var i = 0; i < views.length; i++) {
-				if (views[i].name == "Hall1") {
-					currentView = views[i];
-					break;
+				for (var i = 0; i < views.length; i++) {
+					if (views[i].name == "Hall1") {
+						currentView = views[i];
+						break;
+					}
 				}
-			}
 
-			texture = new THREE.TextureLoader().load(currentView.texture);
-			material = new THREE.MeshBasicMaterial({ map: texture, side: THREE.BackSide });
-			mesh = new THREE.Mesh(geometry, material);
-			mesh.scale.x = -1;
+				texture = new THREE.TextureLoader().load(currentView.texture);
+				material = new THREE.MeshBasicMaterial({ map: texture, side: THREE.BackSide });
+				mesh = new THREE.Mesh(geometry, material);
+				mesh.scale.x = -1;
 
-			scene.add(mesh);
-			createPoints();
+				scene.add(mesh);
+				createPoints();
 
-			//////Блок инициализации панели управления////
-			otherScene = new THREE.Scene();
-			otherCamera = new THREE.PerspectiveCamera(45, window.innerHeight / window.innerWidth, 0.1, 1000);
-			otherCamera.position.z = 5;
-			otherCamera.position.y = 1.7;
+				//////Блок инициализации панели управления////
+				otherScene = new THREE.Scene();
+				otherCamera = new THREE.PerspectiveCamera(45, window.innerHeight / window.innerWidth, 0.1, 1000);
+				otherCamera.position.z = 5;
+				otherCamera.position.y = 1.7;
 
-			spriteGeometry = new THREE.PlaneGeometry((window.innerWidth/2000), 0.4, 1, 1);
-			spriteTexture = new THREE.TextureLoader().load("img/icons/panel.png");
-			spriteMaterial = new THREE.MeshBasicMaterial({ map: spriteTexture, transparent: true });
-			spriteMesh = new THREE.Mesh(spriteGeometry, spriteMaterial);
-			spriteMesh.rotation = 0.1 * Math.PI;
-			otherScene.add(spriteMesh);
-
-			console.log(panelIcons);
-			panelIcons.forEach(function (item, i, panelIcon) {
-				spriteTexture = new THREE.TextureLoader().load(panelIcon[i].texture);
-				console.log(panelIcon[i].texture);
-				spriteGeometry = new THREE.PlaneGeometry(0.07, 0.29, 1, 1);
+				spriteGeometry = new THREE.PlaneGeometry((window.innerWidth / 1950), 0.37, 1, 1);
+				spriteTexture = new THREE.TextureLoader().load("img/icons/panel.png");
 				spriteMaterial = new THREE.MeshBasicMaterial({ map: spriteTexture, transparent: true });
 				spriteMesh = new THREE.Mesh(spriteGeometry, spriteMaterial);
-				spriteMesh.position.x = panelIcon[i].coords.x;
+				spriteMesh.rotation = 0.1 * Math.PI;
 				otherScene.add(spriteMesh);
-				buttons.push(spriteMesh);
-			});
-			//////////////////////////////////////////////
+
+				panelIcons.forEach(function (item, i, panelIcon) {
+					spriteTexture = new THREE.TextureLoader().load(panelIcon[i].texture);
+					spriteGeometry = new THREE.PlaneGeometry(0.07, 0.29, 1, 1);
+					spriteMaterial = new THREE.MeshBasicMaterial({ map: spriteTexture, transparent: true });
+					spriteMesh = new THREE.Mesh(spriteGeometry, spriteMaterial);
+					spriteMesh.position.x = panelIcon[i].coords.x;
+					spriteMesh.userData = { type: panelIcon[i].name };
+					//console.log(spriteMesh.userData);
+					otherScene.add(spriteMesh);
+					buttons.push(spriteMesh);
+				});
+				//////////////////////////////////////////////
 
 
 
-			renderer = new THREE.WebGLRenderer();
-			renderer.setPixelRatio(window.devicePixelRatio);
-			renderer.setSize(window.innerWidth, window.innerHeight);
-			renderer.autoClear = false;
-			container.appendChild(renderer.domElement);
+				renderer = new THREE.WebGLRenderer();
+				renderer.setPixelRatio(window.devicePixelRatio);
+				renderer.setSize(window.innerWidth, window.innerHeight);
+				renderer.autoClear = false;
+				container.appendChild(renderer.domElement);
 
-			CONTROLS = new THREE.OrbitControls(camera, renderer.domElement);
-			CONTROLS.minPolarAngle = currentView.downAngle;
-			CONTROLS.maxPolarAngle = currentView.upAngle;
-			CONTROLS.enableDamping = true;
-			CONTROLS.rotateSpeed = 0.2;
-			CONTROLS.enablePan = false;
-			CONTROLS.enableZoom = false; // disable OrbitControls's zoom
+				CONTROLS = new THREE.OrbitControls(camera, renderer.domElement);
+				CONTROLS.minPolarAngle = currentView.downAngle;
+				CONTROLS.maxPolarAngle = currentView.upAngle;
+				CONTROLS.enableDamping = true;
+				CONTROLS.rotateSpeed = 0.2;
+				CONTROLS.enablePan = false;
+				CONTROLS.enableZoom = false; // disable OrbitControls's zoom
 
-			document.addEventListener('mousedown', onPointerStart, false);
-			document.addEventListener('mousemove', onPointerMove, false);
-			document.addEventListener('wheel', onDocumentMouseWheel, false);
-		}
-		
-		function configuringView() {
+				document.addEventListener('mousedown', onPointerStart, false);
+				document.addEventListener('mousemove', onPointerMove, false);
+				document.addEventListener('wheel', onDocumentMouseWheel, false);
+				window.addEventListener('resize', onWindowResize, false);
+			}
 
-			for (var i = 0; i < views.length; i++) {
-				if (views[i].name == nextView) {
-					currentView = views[i];
-					break;
+			function configuringView() {
+
+				for (var i = 0; i < views.length; i++) {
+					if (views[i].name == nextView) {
+						currentView = views[i];
+						break;
+					}
+				}
+
+				camera.position.set(currentView.cameraTarget.x, currentView.cameraTarget.y, currentView.cameraTarget.z);
+
+				CONTROLS.minPolarAngle = currentView.downAngle;
+				CONTROLS.maxPolarAngle = currentView.upAngle;
+
+				texture = new THREE.TextureLoader().load(currentView.texture);
+				mesh.material.map = texture;
+
+				points.forEach(function (item, i, points) {
+					scene.remove(points[i]);
+				});
+				points.length = 0;
+
+				createPoints();
+			}
+
+			function createPoints() {
+
+				currentView.points.forEach(function (item, i, point) {
+					pointTexture = new THREE.TextureLoader().load(point[i].texture);
+					pointMaterial = new THREE.MeshBasicMaterial({ map: pointTexture, transparent: true });
+					pointMesh = new THREE.Mesh(pointGeometry, pointMaterial);
+					pointMesh.rotation.y = point[i].rotation * Math.PI;
+					pointMesh.position.x = point[i].coords.x;
+					pointMesh.position.y = point[i].coords.y;
+					pointMesh.position.z = point[i].coords.z;
+					pointMesh.scale.y = -1;
+					pointMesh.userData = { URL: point[i].data, type: point[i].type };
+					points.push(pointMesh);
+				});
+
+				points.forEach(function (item, i, points) {
+					scene.add(points[i]);
+				});
+			}
+
+			function onPointerStart(event) {
+				raycaster.setFromCamera(mouseForRaycasting, camera);
+				var intersects = raycaster.intersectObjects(points);
+				if (intersects.length > 0) {
+					if (intersects[0].object.userData.type == "link") {
+						nextView = intersects[0].object.userData.URL;
+						configuringView();
+					}
+					if (intersects[0].object.userData.type == "info") {
+					}
+				}
+
+				raycaster.setFromCamera(mouseForRaycasting, otherCamera);
+				intersects = raycaster.intersectObjects(buttons);
+				if (intersects.length > 0) {
+					switch (intersects[0].object.userData.type) {
+						case "Plus":
+							var fov = camera.fov + (-50) * 0.03;
+							camera.fov = THREE.Math.clamp(fov, 10, 75);
+							camera.updateProjectionMatrix();
+							break;
+						case "Minus":
+							var fov = camera.fov + 50 * 0.03;
+							camera.fov = THREE.Math.clamp(fov, 10, 75);
+							camera.updateProjectionMatrix();
+							break;
+						case "Left":
+						
+							var prevX = new THREE.Vector3;
+							prevX = camera.position;
+							console.log(prevX);
+
+							prevX.x -= 0.02;
+							//prevX.y -= 0.02;
+							//prevX.z += 0.02;
+							camera.lookAt(prevX);
+							//camera.position.x = prevX;
+							//camera.updateProjectionMatrix();
+							break;
+						case "FullScreen":
+							if (THREEx.FullScreen.activated()) {
+								THREEx.FullScreen.cancel();
+							} else {
+								THREEx.FullScreen.request();
+							}
+							break;
+					}
 				}
 			}
 
-			camera.position.set(currentView.cameraTarget.x, currentView.cameraTarget.y, currentView.cameraTarget.z);
+			function onPointerMove(event) {
 
-			CONTROLS.minPolarAngle = currentView.downAngle;
-			CONTROLS.maxPolarAngle = currentView.upAngle;
+				mouseForRaycasting.x = (event.clientX / window.innerWidth) * 2 - 1;
+				mouseForRaycasting.y = - (event.clientY / window.innerHeight) * 2 + 1;
 
-			texture = new THREE.TextureLoader().load(currentView.texture);
-			mesh.material.map = texture;
-
-			points.forEach(function (item, i, points) {
-				scene.remove(points[i]);
-			});
-			points.length = 0;
-
-			createPoints();
-		}
-
-		function createPoints() {
-
-			currentView.points.forEach(function (item, i, point) {
-				pointTexture = new THREE.TextureLoader().load(point[i].texture);
-				pointMaterial = new THREE.MeshBasicMaterial({ map: pointTexture, transparent: true });
-				pointMesh = new THREE.Mesh(pointGeometry, pointMaterial);
-				pointMesh.rotation.y = point[i].rotation * Math.PI;
-				pointMesh.position.x = point[i].coords.x;
-				pointMesh.position.y = point[i].coords.y;
-				pointMesh.position.z = point[i].coords.z;
-				pointMesh.scale.y = -1;
-				pointMesh.userData = { URL: point[i].data, type: point[i].type };
-				points.push(pointMesh);
-			});
-
-			points.forEach(function (item, i, points) {
-				scene.add(points[i]);
-			});
-		}
-
-		function onPointerStart(event) {
-			raycaster.setFromCamera(mouseForRaycasting, camera);
-
-			var intersects = raycaster.intersectObjects(points);
-			if (intersects.length > 0) {
-				if (intersects[0].object.userData.type == "link") {
-					nextView = intersects[0].object.userData.URL;
-					configuringView();
-				}
-				if (intersects[0].object.userData.type == "info") {
-				}
 			}
 
-		}
+			function onDocumentMouseWheel(event) {
 
-		function onPointerMove(event) {
+				var fov = camera.fov + event.deltaY * 0.03;
+				camera.fov = THREE.Math.clamp(fov, 10, 75);
+				camera.updateProjectionMatrix();
 
-			mouseForRaycasting.x = (event.clientX / window.innerWidth) * 2 - 1;
-			mouseForRaycasting.y = - (event.clientY / window.innerHeight) * 2 + 1;
+			}
 
-		}
+			function animate() {
 
-		function onDocumentMouseWheel(event) {
+				CONTROLS.update();
+				requestAnimationFrame(animate);
+				render();
 
-			var fov = camera.fov + event.deltaY * 0.03;
-			camera.fov = THREE.Math.clamp(fov, 10, 75);
-			camera.updateProjectionMatrix();
+			}
 
-		}
+			function render() {
 
-		function animate() {
+				raycaster.setFromCamera(mouseForRaycasting, camera);
 
-			CONTROLS.update();
-			requestAnimationFrame(animate);
-			render();
+				var intersects = raycaster.intersectObjects(points);
+				if (intersects.length > 0) {
+					if (INTERSECTED != intersects[0].object) {
+						if (INTERSECTED) INTERSECTED.material.color.setHex(INTERSECTED.currentHex);
 
-		}
-
-		function render() {
-
-			raycaster.setFromCamera(mouseForRaycasting, camera);
-
-			var intersects = raycaster.intersectObjects(points);
-			if (intersects.length > 0) {
-				if (INTERSECTED != intersects[0].object) {
+						INTERSECTED = intersects[0].object;
+						INTERSECTED.currentHex = INTERSECTED.material.color.getHex();
+						INTERSECTED.material.color.setHex(0xee5f00);
+					}
+				} else {
 					if (INTERSECTED) INTERSECTED.material.color.setHex(INTERSECTED.currentHex);
-
-					INTERSECTED = intersects[0].object;
-					INTERSECTED.currentHex = INTERSECTED.material.color.getHex();
-					INTERSECTED.material.color.setHex(0xee5f00);
+					INTERSECTED = null;
 				}
-			} else {
-				if (INTERSECTED) INTERSECTED.material.color.setHex(INTERSECTED.currentHex);
-				INTERSECTED = null;
-			}
 
-			raycaster.setFromCamera(mouseForRaycasting, otherCamera);
-			intersects = raycaster.intersectObjects(buttons);
-			if (intersects.length > 0) {
-				if (otherINTERSECTED != intersects[0].object) {
+				raycaster.setFromCamera(mouseForRaycasting, otherCamera);
+				intersects = raycaster.intersectObjects(buttons);
+				if (intersects.length > 0) {
+					if (otherINTERSECTED != intersects[0].object) {
+						if (otherINTERSECTED) otherINTERSECTED.material.color.setHex(otherINTERSECTED.currentHex);
+
+						otherINTERSECTED = intersects[0].object;
+						otherINTERSECTED.currentHex = otherINTERSECTED.material.color.getHex();
+						otherINTERSECTED.material.color.setHex(0xee5f00);
+					}
+				} else {
 					if (otherINTERSECTED) otherINTERSECTED.material.color.setHex(otherINTERSECTED.currentHex);
-
-					otherINTERSECTED = intersects[0].object;
-					otherINTERSECTED.currentHex = otherINTERSECTED.material.color.getHex();
-					otherINTERSECTED.material.color.setHex(0xee5f00);
+					otherINTERSECTED = null;
 				}
-			} else {
-				if (otherINTERSECTED) otherINTERSECTED.material.color.setHex(otherINTERSECTED.currentHex);
-				otherINTERSECTED = null;
-			}
-			
-			renderer.clear();
-			renderer.render(scene, camera);
-			renderer.clearDepth();
-			renderer.render(otherScene, otherCamera);
-		}
 
-	</script>
+				renderer.clear();
+				renderer.render(scene, camera);
+				renderer.clearDepth();
+				renderer.render(otherScene, otherCamera);
+			}
+
+			function onWindowResize() {
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+				renderer.setSize(window.innerWidth, window.innerHeight);
+			}
+
+			function fullScreen(element) {
+				if (element.requestFullScreen) {
+					element.requestFullScreen();
+				} else if (element.webkitRequestFullScreen) {
+					element.webkitRequestFullScreen();
+				} else if (element.mozRequestFullScreen) {
+					element.mozRequestFullScreen();
+				}
+			}
+
+			function fullScreenCancel() {
+				if (document.requestFullScreen) {
+					document.requestFullScreen();
+				} else if (document.webkitRequestFullScreen) {
+					document.webkitRequestFullScreen();
+				} else if (document.mozRequestFullScreen) {
+					document.mozRequestFullScreen();
+				}
+			}
+
+		</script>
+	</div>
 </body>
 
 </html>
