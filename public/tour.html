@@ -27,225 +27,247 @@
 </head>
 
 <body>
-	
+
 	<div id='container'></div>
 
-		<script type="text/javascript" src="libs/three.js"></script>
-		<script type="text/javascript" src="libs/jquery-3.3.1.js"></script>
-		<script type="text/javascript" src="libs/stats.min.js"></script>
-		<script type="text/javascript" src="data.js"></script>
-		<script type="text/javascript" src="libs/OrbitControls.js"></script>
-		<script type="text/javascript" src="libs/OrbitControls.js"></script>
-		<script type="text/javascript" src="libs/THREEx.FullScreen.js"></script>
-		<script type="text/javascript" src="libs/WebGL.js"></script>
+	<script type="text/javascript" src="libs/three.js"></script>
+	<script type="text/javascript" src="libs/jquery-3.3.1.js"></script>
+	<script type="text/javascript" src="libs/stats.min.js"></script>
+	<script type="text/javascript" src="data.js"></script>
+	<script type="text/javascript" src="libs/OrbitControls.js"></script>
+	<script type="text/javascript" src="libs/OrbitControls.js"></script>
+	<script type="text/javascript" src="libs/THREEx.FullScreen.js"></script>
+	<script type="text/javascript" src="libs/WebGL.js"></script>
 
-		<script>
-			var scene, camera, renderer, raycaster, CONTROLS;
-			var otherScene, otherCamera, raycaster, otherINTERSECTED;
-			var mouse = new THREE.Vector2();
-			var mouseForRaycasting = new THREE.Vector2(0, 0), INTERSECTED;
+	<script>
+		var scene, camera, renderer, raycaster, CONTROLS;
+		var otherScene, otherCamera, raycaster, otherINTERSECTED;
+		var mouse = new THREE.Vector2();
+		var mouseForRaycasting = new THREE.Vector2(0, 0), INTERSECTED;
 
-			var points = [], buttons = [];
-			var currentView, nextView;
+		var points = [], buttons = [];
+		var currentView, nextView;
 
-			var geometry, mesh, material, texture;
+		var geometry, mesh, material, texture;
 
-			var pointGeometry, pointMaterial, pointMesh;
-			var pointTexture;
+		var pointGeometry, pointMaterial, pointMesh;
+		var pointTexture;
 
-			var spriteGeometry, spriteMaterial, spriteMesh;
-			var spriteTexture;
+		var spriteGeometry, spriteMaterial, spriteMesh;
+		var spriteTexture;
 
-			if (WEBGL.isWebGLAvailable() === false) {
-				document.body.appendChild(WEBGL.getWebGLErrorMessage());
+		if (WEBGL.isWebGLAvailable() === false) {
+			document.body.appendChild(WEBGL.getWebGLErrorMessage());
+		}
+
+		init();
+		animate();
+
+		function init() {
+			var container;
+
+			container = document.getElementById("container");
+			document.body.appendChild(container);
+
+			scene = new THREE.Scene();
+			camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1100); //fov, aspect, near, far
+			raycaster = new THREE.Raycaster();
+
+			geometry = new THREE.SphereGeometry(10, 50, 50);
+			pointGeometry = new THREE.PlaneGeometry(1, 1, 1, 1);
+
+			for (var i = 0; i < views.length; i++) {
+				if (views[i].name == "Hall1") {
+					currentView = views[i];
+					break;
+				}
+			}
+			camera.position.set(currentView.cameraTarget.x, currentView.cameraTarget.y, currentView.cameraTarget.z);
+
+			texture = new THREE.TextureLoader().load(currentView.texture);
+			material = new THREE.MeshBasicMaterial({ map: texture, side: THREE.BackSide });
+			mesh = new THREE.Mesh(geometry, material);
+			mesh.scale.x = -1;
+
+			scene.add(mesh);
+			//scene.add( new THREE.AxesHelper( 20 ) );
+			createPoints();
+
+			//////Блок инициализации панели управления////
+			otherScene = new THREE.Scene();
+			otherCamera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+			otherCamera.position.z = 5;
+			otherCamera.position.y = 1.8;
+
+			if (window.innerWidth > window.innerHeight) {
+
+			} else {
+				otherCamera.position.z = 7;
+				otherCamera.position.y = 2.5;
 			}
 
-			init();
-			animate();
+			spriteGeometry = new THREE.PlaneGeometry(3, 0.37, 1, 1);
+			spriteTexture = new THREE.TextureLoader().load("img/icons/panel2.png");
+			spriteMaterial = new THREE.MeshBasicMaterial({ map: spriteTexture, transparent: true });
+			spriteMesh = new THREE.Mesh(spriteGeometry, spriteMaterial);
+			spriteMesh.rotation = 0.1 * Math.PI;
+			//spriteMesh.scale.y = -1;
+			spriteMesh.scale.x = -1;
+			otherScene.add(spriteMesh);
 
-			function init() {
-				var container;
-
-				container = document.getElementById("container");
-				document.body.appendChild(container);
-
-				scene = new THREE.Scene();
-				camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1100); //fov, aspect, near, far
-				raycaster = new THREE.Raycaster();
-
-				geometry = new THREE.SphereGeometry(10, 50, 50);
-				pointGeometry = new THREE.PlaneGeometry(1, 1, 1, 1);
-
-				for (var i = 0; i < views.length; i++) {
-					if (views[i].name == "Hall1") {
-						currentView = views[i];
-						break;
-					}
-				}
-				camera.position.set(currentView.cameraTarget.x, currentView.cameraTarget.y, currentView.cameraTarget.z);
-
-				texture = new THREE.TextureLoader().load(currentView.texture);
-				material = new THREE.MeshBasicMaterial({ map: texture, side: THREE.BackSide });
-				mesh = new THREE.Mesh(geometry, material);
-				mesh.scale.x = -1;
-
-				scene.add(mesh);
-				//scene.add( new THREE.AxesHelper( 20 ) );
-				createPoints();
-
-				//////Блок инициализации панели управления////
-				otherScene = new THREE.Scene();
-				otherCamera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
-				otherCamera.position.z = 5;
-				otherCamera.position.y = 1.8;
-
-				if (window.innerWidth > window.innerHeight) {
-
-				} else {
-					otherCamera.position.z = 7;
-					otherCamera.position.y = 2.5;
-				}
-				
-				spriteGeometry = new THREE.PlaneGeometry(3, 0.37, 1, 1);
-				spriteTexture = new THREE.TextureLoader().load("img/icons/panel2.png");
+			panelIcons.forEach(function (item, i, panelIcon) {
+				spriteTexture = new THREE.TextureLoader().load(panelIcon[i].texture);
+				spriteGeometry = new THREE.PlaneGeometry(0.29, 0.29, 1, 1);
 				spriteMaterial = new THREE.MeshBasicMaterial({ map: spriteTexture, transparent: true });
 				spriteMesh = new THREE.Mesh(spriteGeometry, spriteMaterial);
-				spriteMesh.rotation = 0.1 * Math.PI;
-				//spriteMesh.scale.y = -1;
-				spriteMesh.scale.x = -1;
+				spriteMesh.position.x = panelIcon[i].coords.x;
+				spriteMesh.userData = { type: panelIcon[i].name };
+				//console.log(spriteMesh.userData);
 				otherScene.add(spriteMesh);
-
-				panelIcons.forEach(function (item, i, panelIcon) {
-					spriteTexture = new THREE.TextureLoader().load(panelIcon[i].texture);
-					spriteGeometry = new THREE.PlaneGeometry(0.29, 0.29, 1, 1);
-					spriteMaterial = new THREE.MeshBasicMaterial({ map: spriteTexture, transparent: true });
-					spriteMesh = new THREE.Mesh(spriteGeometry, spriteMaterial);
-					spriteMesh.position.x = panelIcon[i].coords.x;
-					spriteMesh.userData = { type: panelIcon[i].name };
-					//console.log(spriteMesh.userData);
-					otherScene.add(spriteMesh);
-					buttons.push(spriteMesh);
-				});
-				//////////////////////////////////////////////
+				buttons.push(spriteMesh);
+			});
+			//////////////////////////////////////////////
 
 
 
-				renderer = new THREE.WebGLRenderer();
-				renderer.setPixelRatio(window.devicePixelRatio);
-				renderer.setSize(window.innerWidth, window.innerHeight);
-				renderer.autoClear = false;
-				container.appendChild(renderer.domElement);
+			renderer = new THREE.WebGLRenderer();
+			renderer.setPixelRatio(window.devicePixelRatio);
+			renderer.setSize(window.innerWidth, window.innerHeight);
+			renderer.autoClear = false;
+			container.appendChild(renderer.domElement);
 
-				CONTROLS = new THREE.OrbitControls(camera, renderer.domElement);
-				CONTROLS.minPolarAngle = currentView.downAngle;
-				CONTROLS.maxPolarAngle = currentView.upAngle;
-				CONTROLS.enableDamping = true;
-				CONTROLS.rotateSpeed = 0.2;
-				CONTROLS.enablePan = false;
-				CONTROLS.enableZoom = false; // disable OrbitControls's zoom
+			CONTROLS = new THREE.OrbitControls(camera, renderer.domElement);
+			CONTROLS.minPolarAngle = currentView.downAngle;
+			CONTROLS.maxPolarAngle = currentView.upAngle;
+			CONTROLS.enableDamping = true;
+			CONTROLS.rotateSpeed = 0.2;
+			CONTROLS.enablePan = false;
+			CONTROLS.enableZoom = false; // disable OrbitControls's zoom
 
-				document.addEventListener('mousedown', onPointerStart, false);
-				document.addEventListener('mousemove', onPointerMove, false);
-				document.addEventListener('wheel', onDocumentMouseWheel, false);
-				document.addEventListener( 'touchstart', onPointerStart, false );
-				window.addEventListener('resize', onWindowResize, false);
-			}
+			document.addEventListener('mousedown', onPointerStart, false);
+			document.addEventListener('mousemove', onPointerMove, false);
+			document.addEventListener('wheel', onDocumentMouseWheel, false);
+			document.addEventListener('touchstart', onPointerStartTouch, false);
+			window.addEventListener('resize', onWindowResize, false);
+		}
 
-			function configuringView() {
+		function configuringView() {
 
-				for (var i = 0; i < views.length; i++) {
-					if (views[i].name == nextView) {
-						currentView = views[i];
-						break;
-					}
+			for (var i = 0; i < views.length; i++) {
+				if (views[i].name == nextView) {
+					currentView = views[i];
+					break;
 				}
-
-				camera.position.set(currentView.cameraTarget.x, currentView.cameraTarget.y, currentView.cameraTarget.z);
-
-				CONTROLS.minPolarAngle = currentView.downAngle;
-				CONTROLS.maxPolarAngle = currentView.upAngle;
-
-				texture = new THREE.TextureLoader().load(currentView.texture);
-				mesh.material.map = texture;
-
-				points.forEach(function (item, i, points) {
-					scene.remove(points[i]);
-				});
-				points.length = 0;
-
-				createPoints();
 			}
 
-			function createPoints() {
+			camera.position.set(currentView.cameraTarget.x, currentView.cameraTarget.y, currentView.cameraTarget.z);
 
-				currentView.points.forEach(function (item, i, point) {
-					pointTexture = new THREE.TextureLoader().load(point[i].texture);
-					pointMaterial = new THREE.MeshBasicMaterial({ map: pointTexture, transparent: true });
-					pointMesh = new THREE.Mesh(pointGeometry, pointMaterial);
-					pointMesh.rotation.y = point[i].rotation * Math.PI;
-					pointMesh.position.x = point[i].coords.x;
-					pointMesh.position.y = point[i].coords.y;
-					pointMesh.position.z = point[i].coords.z;
-					pointMesh.scale.y = -1;
-					pointMesh.userData = { URL: point[i].data, type: point[i].type };
-					points.push(pointMesh);
-				});
+			CONTROLS.minPolarAngle = currentView.downAngle;
+			CONTROLS.maxPolarAngle = currentView.upAngle;
 
-				points.forEach(function (item, i, points) {
-					scene.add(points[i]);
-				});
+			texture = new THREE.TextureLoader().load(currentView.texture);
+			mesh.material.map = texture;
+
+			points.forEach(function (item, i, points) {
+				scene.remove(points[i]);
+			});
+			points.length = 0;
+
+			createPoints();
+		}
+
+		function createPoints() {
+
+			currentView.points.forEach(function (item, i, point) {
+				pointTexture = new THREE.TextureLoader().load(point[i].texture);
+				pointMaterial = new THREE.MeshBasicMaterial({ map: pointTexture, transparent: true });
+				pointMesh = new THREE.Mesh(pointGeometry, pointMaterial);
+				pointMesh.rotation.y = point[i].rotation * Math.PI;
+				pointMesh.position.x = point[i].coords.x;
+				pointMesh.position.y = point[i].coords.y;
+				pointMesh.position.z = point[i].coords.z;
+				pointMesh.scale.y = -1;
+				pointMesh.userData = { URL: point[i].data, type: point[i].type };
+				points.push(pointMesh);
+			});
+
+			points.forEach(function (item, i, points) {
+				scene.add(points[i]);
+			});
+		}
+
+		function panelClick(object) {
+			switch (object.userData.type) {
+				case "Plus":
+					var fov = camera.fov + (-100) * 0.03;
+					camera.fov = THREE.Math.clamp(fov, 10, 75);
+					camera.updateProjectionMatrix();
+					break;
+				case "Minus":
+					var fov = camera.fov + 100 * 0.03;
+					camera.fov = THREE.Math.clamp(fov, 10, 75);
+					camera.updateProjectionMatrix();
+					break;
+				case "Left":
+					CONTROLS.rotateLeft(-0.05);
+					break;
+				case "Right":
+					CONTROLS.rotateLeft(0.05);
+					break;
+				case "Up":
+					CONTROLS.rotateUp(0.05);
+					break;
+				case "Down":
+					CONTROLS.rotateUp(-0.05);
+					break;
+				case "FullScreen":
+					if (THREEx.FullScreen.activated()) {
+						THREEx.FullScreen.cancel();
+					} else {
+						THREEx.FullScreen.request();
+					}
+					break;
 			}
+		}
 
-			function panelClick(object) {
-				switch (object.userData.type) {
-						case "Plus":
-							var fov = camera.fov + (-100) * 0.03;
-							camera.fov = THREE.Math.clamp(fov, 10, 75);
-							camera.updateProjectionMatrix();
-							break;
-						case "Minus":
-							var fov = camera.fov + 100 * 0.03;
-							camera.fov = THREE.Math.clamp(fov, 10, 75);
-							camera.updateProjectionMatrix();
-							break;
-						case "Left":
-							CONTROLS.rotateLeft(-0.05);
-							break;
-						case "Right":
-							CONTROLS.rotateLeft(0.05);
-							break;
-						case "Up":
-							CONTROLS.rotateUp(0.05);
-							break;
-						case "Down":
-							CONTROLS.rotateUp(-0.05);
-							break;
-						case "FullScreen":
-							if (THREEx.FullScreen.activated()) {
-								THREEx.FullScreen.cancel();
-							} else {
-								THREEx.FullScreen.request();
-							}
-							break;
-					}
-			}
-
-			function onPointerStart(event) {
-				raycaster.setFromCamera(mouseForRaycasting, camera);
-				var intersects = raycaster.intersectObjects(points);
-				if (intersects.length > 0) {
-					if (intersects[0].object.userData.type == "link") {
-						nextView = intersects[0].object.userData.URL;
-						configuringView();
-					}
-					if (intersects[0].object.userData.type == "info") {
-					}
+		function onPointerStart(event) {
+			raycaster.setFromCamera(mouseForRaycasting, camera);
+			var intersects = raycaster.intersectObjects(points);
+			if (intersects.length > 0) {
+				if (intersects[0].object.userData.type == "link") {
+					nextView = intersects[0].object.userData.URL;
+					configuringView();
 				}
+				if (intersects[0].object.userData.type == "info") {
+				}
+			}
 
-				raycaster.setFromCamera(mouseForRaycasting, otherCamera);
-				intersects = raycaster.intersectObjects(buttons);
-				if (intersects.length > 0) {
-					panelClick(intersects[0].object);
+			raycaster.setFromCamera(mouseForRaycasting, otherCamera);
+			intersects = raycaster.intersectObjects(buttons);
+			if (intersects.length > 0) {
+				panelClick(intersects[0].object);
+			}
+		}
+
+		function onPointerStartTouch(event) {
+			
+			var touchVec = new THREE.Vector2(event.touches[0].pageX, event.touches[0].pageY);
+			
+			raycaster.setFromCamera(touchVec, camera);
+			var intersects = raycaster.intersectObjects(points);
+			if (intersects.length > 0) {
+				if (intersects[0].object.userData.type == "link") {
+					nextView = intersects[0].object.userData.URL;
+					configuringView();
+				}
+				if (intersects[0].object.userData.type == "info") {
+				}
+			}
+
+			raycaster.setFromCamera(touchVec, otherCamera);
+			intersects = raycaster.intersectObjects(buttons);
+			if (intersects.length > 0) {
+				panelClick(intersects[0].object);
 				}
 			}
 
@@ -321,9 +343,9 @@
 				otherCamera.updateProjectionMatrix();
 			}
 
-		</script>
+	</script>
 
-<div class='popup-3d'>С Новым Годом!</div>
+	<div class='popup-3d'>С Новым Годом!</div>
 
 </body>
 
