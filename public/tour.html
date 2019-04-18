@@ -253,8 +253,8 @@
 
 		function onPointerStartTouch(event) {
 			event.preventDefault();
-			var touchX = (event.touches[0].pageX * 2 / window.innerWidth) * 2 - 1;
-			var touchY = (event.touches[0].pageY * 2 / window.innerHeight) * 2 + 1;
+			var touchX = (event.touches[0].pageX * 2 / renderer.domElement.width) * 2 - 1;
+			var touchY = (event.touches[0].pageY * 2 / renderer.domElement.height) * 2 + 1;
 			var touchVec = new THREE.Vector2(touchX, touchY);
 
 			//projector.unprojectVector(touchVec, camera);
