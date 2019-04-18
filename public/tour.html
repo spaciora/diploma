@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+	<meta name="viewport" content="width=device-width, user-scalable=no">
 	<title>Виртуальная экскурсия по ККМБ</title>
 	<style>
 		body {
@@ -99,6 +99,13 @@
 				otherCamera.position.z = 5;
 				otherCamera.position.y = 1.8;
 
+				if (window.innerWidth > window.innerHeight) {
+
+				} else {
+					otherCamera.position.z = 7;
+					otherCamera.position.y = 2.5;
+				}
+				
 				spriteGeometry = new THREE.PlaneGeometry(3, 0.37, 1, 1);
 				spriteTexture = new THREE.TextureLoader().load("img/icons/panel2.png");
 				spriteMaterial = new THREE.MeshBasicMaterial({ map: spriteTexture, transparent: true });
