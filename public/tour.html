@@ -252,14 +252,15 @@
 		}
 
 		function onPointerStartTouch(event) {
-			var touchX = (event.touches[0].pageX / window.innerWidth) * 2 - 1;
-			var touchY = (event.touches[0].pageY / window.innerHeight) * 2 + 1;
-			var touchVec = new THREE.Vector3(touchX, touchY, 0);
+			event.preventDefault();
+			var touchX = (event.touches[0].pageX * 2 / window.innerWidth) * 2 - 1;
+			var touchY = (event.touches[0].pageY * 2 / window.innerHeight) * 2 + 1;
+			var touchVec = new THREE.Vector2(touchX, touchY);
 
-			projector.unprojectVector(touchVec, camera);
+			//projector.unprojectVector(touchVec, camera);
 
-			raycaster.setFromCamera(camera.position, touchVec.sub(camera.position).normalize());
-			var intersects = raycaster.intersectObjects(points);
+			raycaster.setFromCamera(touchVec, camera);
+			var intersects = raycaster.intersectObjects(points, true);
 			if (intersects.length > 0) {
 				if (intersects[0].object.userData.type == "link") {
 					nextView = intersects[0].object.userData.URL;
