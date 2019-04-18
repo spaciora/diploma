@@ -40,7 +40,7 @@
 	<script type="text/javascript" src="libs/WebGL.js"></script>
 
 	<script>
-		var scene, camera, renderer, raycaster, CONTROLS;
+		var scene, camera, renderer, raycaster, CONTROLS, projector;
 		var otherScene, otherCamera, raycaster, otherINTERSECTED;
 		var mouse = new THREE.Vector2();
 		var mouseForRaycasting = new THREE.Vector2(0, 0), INTERSECTED;
@@ -72,6 +72,7 @@
 			scene = new THREE.Scene();
 			camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1100); //fov, aspect, near, far
 			raycaster = new THREE.Raycaster();
+			projector = new THREE.Projector();
 
 			geometry = new THREE.SphereGeometry(10, 50, 50);
 			pointGeometry = new THREE.PlaneGeometry(1, 1, 1, 1);
@@ -251,12 +252,14 @@
 		}
 
 		function onPointerStartTouch(event) {
-			alert("touch");
+			//alert("touch");
 			var touchX = (event.touches[0].pageX / window.innerWidth) * 2 - 1;
 			var touchY = (event.touches[0].pageY / window.innerHeight) * 2 + 1;
-			var touchVec = new THREE.Vector2(touchX, touchY);
+			var touchVec = new THREE.Vector3(touchX, touchY, 0);
 
-			raycaster.setFromCamera(touchVec, camera);
+			projector.unprojectVector(touchVec, camera);
+
+			raycaster.setFromCamera(camera.position, touchVec.sub(camera.position).normalize());
 			var intersects = raycaster.intersectObjects(points);
 			if (intersects.length > 0) {
 				if (intersects[0].object.userData.type == "link") {
