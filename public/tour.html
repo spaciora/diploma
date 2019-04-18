@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="utf-8">
-	<meta http-equiv="Pragma" content="no-cache">
+	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 	<title>Виртуальная экскурсия по ККМБ</title>
 	<style>
 		body {
@@ -95,11 +95,11 @@
 
 				//////Блок инициализации панели управления////
 				otherScene = new THREE.Scene();
-				otherCamera = new THREE.PerspectiveCamera(45, window.innerHeight / window.innerWidth, 0.1, 1000);
+				otherCamera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
 				otherCamera.position.z = 5;
 				otherCamera.position.y = 1.8;
 
-				spriteGeometry = new THREE.PlaneGeometry(0.75, 0.37, 1, 1);
+				spriteGeometry = new THREE.PlaneGeometry(3, 0.37, 1, 1);
 				spriteTexture = new THREE.TextureLoader().load("img/icons/panel2.png");
 				spriteMaterial = new THREE.MeshBasicMaterial({ map: spriteTexture, transparent: true });
 				spriteMesh = new THREE.Mesh(spriteGeometry, spriteMaterial);
@@ -110,7 +110,7 @@
 
 				panelIcons.forEach(function (item, i, panelIcon) {
 					spriteTexture = new THREE.TextureLoader().load(panelIcon[i].texture);
-					spriteGeometry = new THREE.PlaneGeometry(0.07, 0.29, 1, 1);
+					spriteGeometry = new THREE.PlaneGeometry(0.29, 0.29, 1, 1);
 					spriteMaterial = new THREE.MeshBasicMaterial({ map: spriteTexture, transparent: true });
 					spriteMesh = new THREE.Mesh(spriteGeometry, spriteMaterial);
 					spriteMesh.position.x = panelIcon[i].coords.x;
@@ -309,7 +309,7 @@
 				camera.aspect = window.innerWidth / window.innerHeight;
 				camera.updateProjectionMatrix();
 
-				//otherCamera.aspect = window.innerWidth / window.innerHeight;
+				otherCamera.aspect = window.innerWidth / window.innerHeight;
 				otherCamera.updateProjectionMatrix();
 			}
 

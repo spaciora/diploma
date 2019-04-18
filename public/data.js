@@ -187,21 +187,21 @@ var panelIcons = [
       name: "Plus",
       texture: "img/icons/plus.png",
       data: "someData",
-      coords: { "x": -0.3, "y": 0, "z": 0 }
+      coords: { "x": -1.2, "y": 0, "z": 0 }
    },
 
    {
       name: "Minus",
       texture: "img/icons/minus.png",
       data: "someData",
-      coords: { "x": -0.2, "y": 0, "z": 0 }
+      coords: { "x": -0.8, "y": 0, "z": 0 }
    },
 
    {
       name: "Left",
       texture: "img/icons/left.png",
       data: "someData",
-      coords: { "x": -0.1, "y": 0, "z": 0 }
+      coords: { "x": -0.4, "y": 0, "z": 0 }
    },
 
    {
@@ -215,20 +215,20 @@ var panelIcons = [
       name: "Up",
       texture: "img/icons/up.png",
       data: "someData",
-      coords: { "x": 0.1, "y": 0, "z": 0 }
+      coords: { "x": 0.4, "y": 0, "z": 0 }
    },
 
    {
       name: "Down",
       texture: "img/icons/down.png",
       data: "someData",
-      coords: { "x": 0.2, "y": 0, "z": 0 }
+      coords: { "x": 0.8, "y": 0, "z": 0 }
    },
 
    {
       name: "FullScreen",
       texture: "img/icons/fullscreen.png",
       data: "someData",
-      coords: { "x": 0.3, "y": 0, "z": 0 }
+      coords: { "x": 1.2, "y": 0, "z": 0 }
    },
 ];
