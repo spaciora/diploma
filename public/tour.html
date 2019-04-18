@@ -233,6 +233,9 @@
 		}
 
 		function onPointerStart(event) {
+			
+			event.preventDefault();
+
 			raycaster.setFromCamera(mouseForRaycasting, camera);
 			var intersects = raycaster.intersectObjects(points);
 			if (intersects.length > 0) {
@@ -252,9 +255,15 @@
 		}
 
 		function onPointerStartTouch(event) {
+			//event.preventDefault();
+
+    		//event.clientX = event.touches[0].pageX;
+    		//event.clientY = event.touches[0].pageY;
+
+			//onPointerStart(event);
 			event.preventDefault();
-			var touchX = (event.touches[0].pageX * 2 / renderer.domElement.width) * 2 - 1;
-			var touchY = (event.touches[0].pageY * 2 / renderer.domElement.height) * 2 + 1;
+			var touchX = (event.touches[0].pageX / renderer.domElement.width) * 2 - 1;
+			var touchY = -(event.touches[0].pageY / renderer.domElement.height) * 2 + 1;
 			var touchVec = new THREE.Vector2(touchX, touchY);
 
 			//projector.unprojectVector(touchVec, camera);
