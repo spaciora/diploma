@@ -252,7 +252,6 @@
 		}
 
 		function onPointerStartTouch(event) {
-			//alert("touch");
 			var touchX = (event.touches[0].pageX / window.innerWidth) * 2 - 1;
 			var touchY = (event.touches[0].pageY / window.innerHeight) * 2 + 1;
 			var touchVec = new THREE.Vector3(touchX, touchY, 0);
