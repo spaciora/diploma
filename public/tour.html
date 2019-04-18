@@ -29,6 +29,7 @@
 		<script type="text/javascript" src="libs/OrbitControls.js"></script>
 		<script type="text/javascript" src="libs/OrbitControls.js"></script>
 		<script type="text/javascript" src="libs/THREEx.FullScreen.js"></script>
+		<script type="text/javascript" src="libs/WebGL.js"></script>
 
 		<script>
 			var scene, camera, renderer, raycaster, CONTROLS;
@@ -47,6 +48,9 @@
 			var spriteGeometry, spriteMaterial, spriteMesh;
 			var spriteTexture;
 
+			if ( WEBGL.isWebGLAvailable() === false ) {
+				document.body.appendChild( WEBGL.getWebGLErrorMessage() );
+			}
 
 			init();
 			animate();
@@ -58,14 +62,11 @@
 				document.body.appendChild(container);
 
 				scene = new THREE.Scene();
-
 				camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1100); //fov, aspect, near, far
-				camera.position.set(0.1, 0, -0.2);
-
 				raycaster = new THREE.Raycaster();
 
-				geometry = new THREE.SphereGeometry(750, 50, 50);
-				pointGeometry = new THREE.PlaneGeometry(0.3, 0.3, 1, 1);
+				geometry = new THREE.SphereGeometry(10, 50, 50);
+				pointGeometry = new THREE.PlaneGeometry(1, 1, 1, 1);
 
 				for (var i = 0; i < views.length; i++) {
 					if (views[i].name == "Hall1") {
@@ -73,6 +74,7 @@
 						break;
 					}
 				}
+				camera.position.set(currentView.cameraTarget.x, currentView.cameraTarget.y, currentView.cameraTarget.z);
 
 				texture = new THREE.TextureLoader().load(currentView.texture);
 				material = new THREE.MeshBasicMaterial({ map: texture, side: THREE.BackSide });
@@ -80,6 +82,7 @@
 				mesh.scale.x = -1;
 
 				scene.add(mesh);
+				//scene.add( new THREE.AxesHelper( 20 ) );
 				createPoints();
 
 				//////Блок инициализации панели управления////
@@ -88,7 +91,7 @@
 				otherCamera.position.z = 5;
 				otherCamera.position.y = 1.7;
 
-				spriteGeometry = new THREE.PlaneGeometry((window.innerWidth / 1950), 0.37, 1, 1);
+				spriteGeometry = new THREE.PlaneGeometry(0.75, 0.37, 1, 1);
 				spriteTexture = new THREE.TextureLoader().load("img/icons/panel.png");
 				spriteMaterial = new THREE.MeshBasicMaterial({ map: spriteTexture, transparent: true });
 				spriteMesh = new THREE.Mesh(spriteGeometry, spriteMaterial);
@@ -192,12 +195,12 @@
 				if (intersects.length > 0) {
 					switch (intersects[0].object.userData.type) {
 						case "Plus":
-							var fov = camera.fov + (-50) * 0.03;
+							var fov = camera.fov + (-100) * 0.03;
 							camera.fov = THREE.Math.clamp(fov, 10, 75);
 							camera.updateProjectionMatrix();
 							break;
 						case "Minus":
-							var fov = camera.fov + 50 * 0.03;
+							var fov = camera.fov + 100 * 0.03;
 							camera.fov = THREE.Math.clamp(fov, 10, 75);
 							camera.updateProjectionMatrix();
 							break;
@@ -288,29 +291,13 @@
 			}
 
 			function onWindowResize() {
+				renderer.setSize(window.innerWidth, window.innerHeight);
+
 				camera.aspect = window.innerWidth / window.innerHeight;
 				camera.updateProjectionMatrix();
-				renderer.setSize(window.innerWidth, window.innerHeight);
-			}
 
-			function fullScreen(element) {
-				if (element.requestFullScreen) {
-					element.requestFullScreen();
-				} else if (element.webkitRequestFullScreen) {
-					element.webkitRequestFullScreen();
-				} else if (element.mozRequestFullScreen) {
-					element.mozRequestFullScreen();
-				}
-			}
-
-			function fullScreenCancel() {
-				if (document.requestFullScreen) {
-					document.requestFullScreen();
-				} else if (document.webkitRequestFullScreen) {
-					document.webkitRequestFullScreen();
-				} else if (document.mozRequestFullScreen) {
-					document.mozRequestFullScreen();
-				}
+				//otherCamera.aspect = window.innerWidth / window.innerHeight;
+				otherCamera.updateProjectionMatrix();
 			}
 
 		</script>
