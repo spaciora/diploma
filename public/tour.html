@@ -250,9 +250,10 @@
 		}
 
 		function onPointerStartTouch(event) {
-			
-			var touchVec = new THREE.Vector2(event.touches[0].pageX, event.touches[0].pageY);
-			
+			var touchX = ( event.touches[0].pageX / window.innerWidth ) * 2 - 1;
+			var touchY = ( event.touches[0].pageY / window.innerHeight ) * 2 + 1;
+			var touchVec = new THREE.Vector2(touchX, touchY);
+
 			raycaster.setFromCamera(touchVec, camera);
 			var intersects = raycaster.intersectObjects(points);
 			if (intersects.length > 0) {
