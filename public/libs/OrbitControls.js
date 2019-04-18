@@ -221,6 +221,18 @@ THREE.OrbitControls = function ( object, domElement ) {
 
 	}();
 
+	this.rotateLeft = function ( angle ) {
+
+		sphericalDelta.theta -= angle;
+
+	}
+
+	this.rotateUp = function ( angle ) {
+
+		sphericalDelta.phi -= angle;
+
+	}
+
 	this.dispose = function () {
 
 		scope.domElement.removeEventListener( 'contextmenu', onContextMenu, false );

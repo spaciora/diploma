@@ -15,12 +15,20 @@
 			width: 100%;
 			height: 100%
 		}
+
+		.popup-3d {
+			color: rgb(245, 112, 112);
+			font-family: 'Pacifico', cursive;
+			font-size: 10rem;
+			pointer-events: none;
+		}
 	</style>
 	<link rel="shortcut icon" href="img/logo.jpg" type="image/x-icon">
 </head>
 
 <body>
-	<div id="container">
+	
+	<div id='container'></div>
 
 		<script type="text/javascript" src="libs/three.js"></script>
 		<script type="text/javascript" src="libs/jquery-3.3.1.js"></script>
@@ -48,8 +56,8 @@
 			var spriteGeometry, spriteMaterial, spriteMesh;
 			var spriteTexture;
 
-			if ( WEBGL.isWebGLAvailable() === false ) {
-				document.body.appendChild( WEBGL.getWebGLErrorMessage() );
+			if (WEBGL.isWebGLAvailable() === false) {
+				document.body.appendChild(WEBGL.getWebGLErrorMessage());
 			}
 
 			init();
@@ -89,13 +97,15 @@
 				otherScene = new THREE.Scene();
 				otherCamera = new THREE.PerspectiveCamera(45, window.innerHeight / window.innerWidth, 0.1, 1000);
 				otherCamera.position.z = 5;
-				otherCamera.position.y = 1.7;
+				otherCamera.position.y = 1.8;
 
 				spriteGeometry = new THREE.PlaneGeometry(0.75, 0.37, 1, 1);
-				spriteTexture = new THREE.TextureLoader().load("img/icons/panel.png");
+				spriteTexture = new THREE.TextureLoader().load("img/icons/panel2.png");
 				spriteMaterial = new THREE.MeshBasicMaterial({ map: spriteTexture, transparent: true });
 				spriteMesh = new THREE.Mesh(spriteGeometry, spriteMaterial);
 				spriteMesh.rotation = 0.1 * Math.PI;
+				//spriteMesh.scale.y = -1;
+				spriteMesh.scale.x = -1;
 				otherScene.add(spriteMesh);
 
 				panelIcons.forEach(function (item, i, panelIcon) {
@@ -178,6 +188,40 @@
 				});
 			}
 
+			function panelClick(object) {
+				switch (object.userData.type) {
+						case "Plus":
+							var fov = camera.fov + (-100) * 0.03;
+							camera.fov = THREE.Math.clamp(fov, 10, 75);
+							camera.updateProjectionMatrix();
+							break;
+						case "Minus":
+							var fov = camera.fov + 100 * 0.03;
+							camera.fov = THREE.Math.clamp(fov, 10, 75);
+							camera.updateProjectionMatrix();
+							break;
+						case "Left":
+							CONTROLS.rotateLeft(-0.05);
+							break;
+						case "Right":
+							CONTROLS.rotateLeft(0.05);
+							break;
+						case "Up":
+							CONTROLS.rotateUp(0.05);
+							break;
+						case "Down":
+							CONTROLS.rotateUp(-0.05);
+							break;
+						case "FullScreen":
+							if (THREEx.FullScreen.activated()) {
+								THREEx.FullScreen.cancel();
+							} else {
+								THREEx.FullScreen.request();
+							}
+							break;
+					}
+			}
+
 			function onPointerStart(event) {
 				raycaster.setFromCamera(mouseForRaycasting, camera);
 				var intersects = raycaster.intersectObjects(points);
@@ -193,38 +237,7 @@
 				raycaster.setFromCamera(mouseForRaycasting, otherCamera);
 				intersects = raycaster.intersectObjects(buttons);
 				if (intersects.length > 0) {
-					switch (intersects[0].object.userData.type) {
-						case "Plus":
-							var fov = camera.fov + (-100) * 0.03;
-							camera.fov = THREE.Math.clamp(fov, 10, 75);
-							camera.updateProjectionMatrix();
-							break;
-						case "Minus":
-							var fov = camera.fov + 100 * 0.03;
-							camera.fov = THREE.Math.clamp(fov, 10, 75);
-							camera.updateProjectionMatrix();
-							break;
-						case "Left":
-						
-							var prevX = new THREE.Vector3;
-							prevX = camera.position;
-							console.log(prevX);
-
-							prevX.x -= 0.02;
-							//prevX.y -= 0.02;
-							//prevX.z += 0.02;
-							camera.lookAt(prevX);
-							//camera.position.x = prevX;
-							//camera.updateProjectionMatrix();
-							break;
-						case "FullScreen":
-							if (THREEx.FullScreen.activated()) {
-								THREEx.FullScreen.cancel();
-							} else {
-								THREEx.FullScreen.request();
-							}
-							break;
-					}
+					panelClick(intersects[0].object);
 				}
 			}
 
@@ -301,7 +314,9 @@
 			}
 
 		</script>
-	</div>
+
+<div class='popup-3d'>С Новым Годом!</div>
+
 </body>
 
 </html>
