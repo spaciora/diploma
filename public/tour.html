@@ -95,9 +95,7 @@
 			otherCamera.position.z = 5;
 			otherCamera.position.y = 1.8;
 
-			if (window.innerWidth > window.innerHeight) {
-
-			} else {
+			if (window.innerHeight > window.innerWidth) {
 				otherCamera.position.z = 7;
 				otherCamera.position.y = 2.5;
 			}
@@ -125,13 +123,16 @@
 			//////////////////////////////////////////////
 
 
-
+			////////Блок инициализации рендереров/////////
 			renderer = new THREE.WebGLRenderer();
 			renderer.setPixelRatio(window.devicePixelRatio);
 			renderer.setSize(window.innerWidth, window.innerHeight);
 			renderer.autoClear = false;
 			container.appendChild(renderer.domElement);
+			//////////////////////////////////////////////
+			
 
+			////Блок инициализации контроллеров камеры////
 			CONTROLS = new THREE.OrbitControls(camera, renderer.domElement);
 			CONTROLS.minPolarAngle = currentView.downAngle;
 			CONTROLS.maxPolarAngle = currentView.upAngle;
@@ -139,6 +140,7 @@
 			CONTROLS.rotateSpeed = 0.2;
 			CONTROLS.enablePan = false;
 			CONTROLS.enableZoom = false; // disable OrbitControls's zoom
+			//////////////////////////////////////////////
 
 			document.addEventListener('mousedown', onPointerStart, false);
 			document.addEventListener('mousemove', onPointerMove, false);
@@ -239,6 +241,7 @@
 					configuringView();
 				}
 				if (intersects[0].object.userData.type == "info") {
+					alert("Действие скоро будет добавлено!");
 				}
 			}
 
@@ -250,33 +253,12 @@
 		}
 
 		function onPointerStartTouch(event) {
-			//event.preventDefault();
-
-    		//event.clientX = event.touches[0].pageX;
-    		//event.clientY = event.touches[0].pageY;
-
-			//onPointerStart(event);
 			event.preventDefault();
+
 			mouse.x = (event.touches[0].pageX / window.innerWidth) * 2 - 1;
 			mouse.y = - (event.touches[0].pageY / window.innerHeight) * 2 + 1;
 
 			onPointerStart(event);
-			/*raycaster.setFromCamera(mouse, camera);
-			var intersects = raycaster.intersectObjects(points, true);
-			if (intersects.length > 0) {
-				if (intersects[0].object.userData.type == "link") {
-					nextView = intersects[0].object.userData.URL;
-					configuringView();
-				}
-				if (intersects[0].object.userData.type == "info") {
-				}
-			}
-
-			raycaster.setFromCamera(touchVec, otherCamera);
-			intersects = raycaster.intersectObjects(buttons);
-			if (intersects.length > 0) {
-				panelClick(intersects[0].object);
-			}*/
 		}
 
 		function onDocumentTouchEnd(event) {
