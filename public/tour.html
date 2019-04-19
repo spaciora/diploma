@@ -16,11 +16,6 @@
 			height: 100%
 		}
 
-		.popup-3d {
-			color: rgb(245, 112, 112);
-			font-family: 'Pacifico', cursive;
-			font-size: 10rem;
-			pointer-events: none;
 		}
 	</style>
 	<link rel="shortcut icon" href="img/logo.jpg" type="image/x-icon">
@@ -38,12 +33,13 @@
 	<script type="text/javascript" src="libs/OrbitControls.js"></script>
 	<script type="text/javascript" src="libs/THREEx.FullScreen.js"></script>
 	<script type="text/javascript" src="libs/WebGL.js"></script>
+	
 
 	<script>
-		var scene, camera, renderer, raycaster, CONTROLS, projector;
+		var scene, camera, renderer, raycaster, CONTROLS;
 		var otherScene, otherCamera, raycaster, otherINTERSECTED;
-		var mouse = new THREE.Vector2();
-		var mouseForRaycasting = new THREE.Vector2(0, 0), INTERSECTED;
+		var mouse = new THREE.Vector2(0, 0), INTERSECTED;
+		var CSSRENDERER;
 
 		var points = [], buttons = [];
 		var currentView, nextView;
@@ -72,7 +68,6 @@
 			scene = new THREE.Scene();
 			camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1100); //fov, aspect, near, far
 			raycaster = new THREE.Raycaster();
-			projector = new THREE.Projector();
 
 			geometry = new THREE.SphereGeometry(10, 50, 50);
 			pointGeometry = new THREE.PlaneGeometry(1, 1, 1, 1);
@@ -236,7 +231,7 @@
 			
 			event.preventDefault();
 
-			raycaster.setFromCamera(mouseForRaycasting, camera);
+			raycaster.setFromCamera(mouse, camera);
 			var intersects = raycaster.intersectObjects(points);
 			if (intersects.length > 0) {
 				if (intersects[0].object.userData.type == "link") {
@@ -247,7 +242,7 @@
 				}
 			}
 
-			raycaster.setFromCamera(mouseForRaycasting, otherCamera);
+			raycaster.setFromCamera(mouse, otherCamera);
 			intersects = raycaster.intersectObjects(buttons);
 			if (intersects.length > 0) {
 				panelClick(intersects[0].object);
@@ -262,13 +257,11 @@
 
 			//onPointerStart(event);
 			event.preventDefault();
-			var touchX = (event.touches[0].pageX / window.innerWidth ) * 2 - 1;
-			var touchY = - (event.touches[0].pageY / window.innerHeight ) * 2 + 1;
-			var touchVec = new THREE.Vector2(touchX, touchY);
+			mouse.x = (event.touches[0].pageX / window.innerWidth) * 2 - 1;
+			mouse.y = - (event.touches[0].pageY / window.innerHeight) * 2 + 1;
 
-			//projector.unprojectVector(touchVec, camera);
-
-			raycaster.setFromCamera(touchVec, camera);
+			onPointerStart(event);
+			/*raycaster.setFromCamera(mouse, camera);
 			var intersects = raycaster.intersectObjects(points, true);
 			if (intersects.length > 0) {
 				if (intersects[0].object.userData.type == "link") {
@@ -283,7 +276,7 @@
 			intersects = raycaster.intersectObjects(buttons);
 			if (intersects.length > 0) {
 				panelClick(intersects[0].object);
-			}
+			}*/
 		}
 
 		function onDocumentTouchEnd(event) {
@@ -292,8 +285,8 @@
 
 		function onPointerMove(event) {
 
-			mouseForRaycasting.x = (event.clientX / window.innerWidth) * 2 - 1;
-			mouseForRaycasting.y = - (event.clientY / window.innerHeight) * 2 + 1;
+			mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+			mouse.y = - (event.clientY / window.innerHeight) * 2 + 1;
 
 		}
 
@@ -315,7 +308,7 @@
 
 		function render() {
 
-			raycaster.setFromCamera(mouseForRaycasting, camera);
+			raycaster.setFromCamera(mouse, camera);
 
 			var intersects = raycaster.intersectObjects(points);
 			if (intersects.length > 0) {
@@ -331,7 +324,7 @@
 				INTERSECTED = null;
 			}
 
-			raycaster.setFromCamera(mouseForRaycasting, otherCamera);
+			raycaster.setFromCamera(mouse, otherCamera);
 			intersects = raycaster.intersectObjects(buttons);
 			if (intersects.length > 0) {
 				if (otherINTERSECTED != intersects[0].object) {
@@ -363,8 +356,6 @@
 		}
 
 	</script>
-
-	<div class='popup-3d'>С Новым Годом!</div>
 
 </body>
 
