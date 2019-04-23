@@ -15,8 +15,6 @@
 			width: 100%;
 			height: 100%
 		}
-
-		}
 	</style>
 	<link rel="shortcut icon" href="img/logo.jpg" type="image/x-icon">
 </head>
@@ -24,6 +22,11 @@
 <body>
 
 	<div id='container'></div>
+
+	<div id="modal">
+		<!-- Modal content -->
+		<p>Modal</p>
+	</div>
 
 	<script type="text/javascript" src="libs/three.js"></script>
 	<script type="text/javascript" src="libs/jquery-3.3.1.js"></script>
@@ -33,12 +36,16 @@
 	<script type="text/javascript" src="libs/OrbitControls.js"></script>
 	<script type="text/javascript" src="libs/THREEx.FullScreen.js"></script>
 	<script type="text/javascript" src="libs/WebGL.js"></script>
-	
+	<script type="text/javascript" src="libs/iziModal.js"></script>
+	<script type="text/javascript" src="libs/OBJLoader.js"></script>
+	<link rel="stylesheet" href="libs/iziModal.css" type="text/css" />
+
 
 	<script>
 		var scene, camera, renderer, raycaster, CONTROLS;
 		var otherScene, otherCamera, raycaster, otherINTERSECTED;
 		var mouse = new THREE.Vector2(0, 0), INTERSECTED;
+		var manager;
 		var CSSRENDERER;
 
 		var points = [], buttons = [];
@@ -58,6 +65,7 @@
 
 		init();
 		animate();
+		$("#modal").iziModal();
 
 		function init() {
 			var container;
@@ -68,6 +76,8 @@
 			scene = new THREE.Scene();
 			camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1100); //fov, aspect, near, far
 			raycaster = new THREE.Raycaster();
+
+			
 
 			geometry = new THREE.SphereGeometry(10, 50, 50);
 			pointGeometry = new THREE.PlaneGeometry(1, 1, 1, 1);
@@ -130,7 +140,7 @@
 			renderer.autoClear = false;
 			container.appendChild(renderer.domElement);
 			//////////////////////////////////////////////
-			
+
 
 			////Блок инициализации контроллеров камеры////
 			CONTROLS = new THREE.OrbitControls(camera, renderer.domElement);
@@ -230,7 +240,7 @@
 		}
 
 		function onPointerStart(event) {
-			
+
 			event.preventDefault();
 
 			raycaster.setFromCamera(mouse, camera);
@@ -241,7 +251,14 @@
 					configuringView();
 				}
 				if (intersects[0].object.userData.type == "info") {
-					alert("Действие скоро будет добавлено!");
+					//alert("Действие скоро будет добавлено!");
+
+					$('#modal').iziModal('setHeaderColor', "#ee5f00");
+					$('#modal').iziModal('setTitle', 'Big title');
+					$('#modal').iziModal('setSubtitle', "Info from User.Data = " + intersects[0].object.userData.URL);
+					$('#modal').iziModal('setTransitionIn', 'fadeInRight');
+					$('#modal').iziModal('setContent', '<p>Some content</p>');
+					$('#modal').iziModal('open');
 				}
 			}
 
@@ -262,7 +279,7 @@
 		}
 
 		function onDocumentTouchEnd(event) {
-    		upEventHandler(event);
+			upEventHandler(event);
 		}
 
 		function onPointerMove(event) {
@@ -270,28 +287,8 @@
 			mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
 			mouse.y = - (event.clientY / window.innerHeight) * 2 + 1;
 
-		}
-
-		function onDocumentMouseWheel(event) {
-
-			var fov = camera.fov + event.deltaY * 0.03;
-			camera.fov = THREE.Math.clamp(fov, 10, 75);
-			camera.updateProjectionMatrix();
-
-		}
-
-		function animate() {
-
-			CONTROLS.update();
-			requestAnimationFrame(animate);
-			render();
-
-		}
-
-		function render() {
 
 			raycaster.setFromCamera(mouse, camera);
-
 			var intersects = raycaster.intersectObjects(points);
 			if (intersects.length > 0) {
 				if (INTERSECTED != intersects[0].object) {
@@ -320,6 +317,25 @@
 				if (otherINTERSECTED) otherINTERSECTED.material.color.setHex(otherINTERSECTED.currentHex);
 				otherINTERSECTED = null;
 			}
+		}
+
+		function onDocumentMouseWheel(event) {
+
+			var fov = camera.fov + event.deltaY * 0.03;
+			camera.fov = THREE.Math.clamp(fov, 10, 75);
+			camera.updateProjectionMatrix();
+
+		}
+
+		function animate() {
+
+			CONTROLS.update();
+			requestAnimationFrame(animate);
+			render();
+
+		}
+
+		function render() {
 
 			renderer.clear();
 			renderer.render(scene, camera);
