@@ -38,15 +38,16 @@
 	<script type="text/javascript" src="libs/WebGL.js"></script>
 	<script type="text/javascript" src="libs/iziModal.js"></script>
 	<script type="text/javascript" src="libs/OBJLoader.js"></script>
+	<script type="text/javascript" src="libs/jsfile.js"></script>
 	<link rel="stylesheet" href="libs/iziModal.css" type="text/css" />
 
-
 	<script>
+		window.JsFile;
 		var scene, camera, renderer, raycaster, CONTROLS;
 		var otherScene, otherCamera, raycaster, otherINTERSECTED;
 		var mouse = new THREE.Vector2(0, 0), INTERSECTED;
-		var manager;
 		var CSSRENDERER;
+		var PageLoaded = false;
 
 		var points = [], buttons = [];
 		var currentView, nextView;
@@ -62,7 +63,7 @@
 		if (WEBGL.isWebGLAvailable() === false) {
 			document.body.appendChild(WEBGL.getWebGLErrorMessage());
 		}
-
+  
 		init();
 		animate();
 		$("#modal").iziModal();
@@ -76,8 +77,6 @@
 			scene = new THREE.Scene();
 			camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1100); //fov, aspect, near, far
 			raycaster = new THREE.Raycaster();
-
-			
 
 			geometry = new THREE.SphereGeometry(10, 50, 50);
 			pointGeometry = new THREE.PlaneGeometry(1, 1, 1, 1);
@@ -158,8 +157,14 @@
 			document.addEventListener('touchstart', onPointerStartTouch, false);
 			container.addEventListener('touchend', onDocumentTouchEnd, false);
 			window.addEventListener('resize', onWindowResize, false);
-		}
 
+			window.onload = function() {
+				PageLoaded = true;
+				console.log( 'Документ и все ресурсы загружены' );
+			  };
+			  
+		}
+			 
 		function configuringView() {
 
 			for (var i = 0; i < views.length; i++) {
@@ -251,13 +256,20 @@
 					configuringView();
 				}
 				if (intersects[0].object.userData.type == "info") {
-					//alert("Действие скоро будет добавлено!");
-
+					CONTROLS.saveState();
+					CONTROLS.reset();
 					$('#modal').iziModal('setHeaderColor', "#ee5f00");
 					$('#modal').iziModal('setTitle', 'Big title');
 					$('#modal').iziModal('setSubtitle', "Info from User.Data = " + intersects[0].object.userData.URL);
 					$('#modal').iziModal('setTransitionIn', 'fadeInRight');
-					$('#modal').iziModal('setContent', '<p>Some content</p>');
+					var file = intersects[0].object.userData.URL;
+					$('#modal').iziModal('setContent', '<iframe height=500rem width=100% src="https://docs.google.com/viewerng/viewer?url=https://cit.tsn.47edu.ru/doc/Programma_provedenia_regionalnykh_UTS_24_11_2018.docx&embedded=true"></iframe>');
+					//var jf = new JsFile(new File(),[]);
+					/*var jf = new JsFile("info/test.docx");
+					jf.read().then(
+    					(document) => { console.log("succ"); },
+    					(error) => { console.log("err"); }
+					);*/
 					$('#modal').iziModal('open');
 				}
 			}
