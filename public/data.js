@@ -1,5 +1,5 @@
 var views = [
-   {
+   { //Hall1
       name: "Hall1", //вход
       texture: "img/hall1.jpg",
       cameraTarget: { "x": 0.1, "y": 0, "z": -0.2 },
@@ -19,8 +19,8 @@ var views = [
                type: "info",
                texture: "img/icons/info.png",
                data: "info/HallReceptionInfo.txt",
-               rotation: 0.6,
-               coords: { "x": -7, "y": 0, "z": -1 }
+               rotation: 0.9,
+               coords: { "x": 1, "y": 0, "z": 7 }
             },
 
             {
@@ -33,33 +33,33 @@ var views = [
          ]
    },
 
-   {
+   { //Conf
       name: "Conf",
       texture: "img/conf.jpg",
-      cameraTarget: { "x": 0.1, "y": 0, "z": -0.2 },
-      upAngle: Math.PI * 0.66,
-      downAngle: Math.PI * 0.34,
+      cameraTarget: { "x": -0.1, "y": 0, "z": 0.1 },
+      upAngle: Math.PI * 0.6,
+      downAngle: Math.PI * 0.4,
       points:
          [
             {
                type: "link",
                texture: "img/icons/link.png",
                data: "Hall3",
-               rotation: 0.9,
-               coords: { "x": -0.7, "y": -0.5, "z": 2 }
+               rotation: 0.6,
+               coords: { "x": -8, "y": -1.5, "z": 0.9 }
             },
 
             {
                type: "info",
                texture: "img/icons/info.png",
                data: "info/HallReceptionInfo.txt",
-               rotation: 0.6,
-               coords: { "x": -2, "y": 0, "z": -1 }
+               rotation: 0.9,
+               coords: { "x": -0.7, "y": 0, "z": 7 }
             }
          ]
    },
 
-   {
+   { //HallReception
       name: "HallReception",
       texture: "img/hallreception.jpg",
       cameraTarget: { "x": -0.01, "y": 0, "z": 0.01 },
@@ -85,7 +85,7 @@ var views = [
          ]
    },
 
-   {
+   { //HallIQ
       name: "Hall2", //холлIQ
       texture: "img/hall2.jpg",
       cameraTarget: { "x": -0.3, "y": 0, "z": -0.2 },
@@ -119,25 +119,51 @@ var views = [
          ]
    },
 
-   {
+   { //HallODL
       name: "Hall3", //холлЗДЛ
       texture: "img/hall3.jpg",
-      cameraTarget: { "x": 0.1, "y": 0, "z": -0.2 },
-      upAngle: Math.PI * 0.66,
-      downAngle: Math.PI * 0.34,
+      cameraTarget: { "x": -0.01, "y": 0, "z": 0.01 },
+      upAngle: Math.PI * 0.535,
+      downAngle: Math.PI * 0.465,
       points:
          [
             {
                type: "link",
                texture: "img/icons/link.png",
                data: "Hall2",
-               rotation: 0.9,
-               coords: { "x": -0.5, "y": -0.7, "z": 2 }
+               rotation: 0.8,
+               coords: { "x": -5.3, "y": -3.5, "z": 6 }
+            },
+
+            {
+               type: "link",
+               texture: "img/icons/link.png",
+               data: "ODL1",
+               rotation: -0.4,
+               coords: { "x": 7.5, "y": -2.5, "z": -3.2 }
             },
          ]
    },
 
-   {
+   { //ODL1
+      name: "ODL1", //ЗДЛ1
+      texture: "img/odl1.jpg",
+      cameraTarget: { "x": 0.001, "y": 0, "z": -0.1 },
+      upAngle: Math.PI * 0.633,
+      downAngle: Math.PI * 0.367,
+      points:
+         [
+            {
+               type: "link",
+               texture: "img/icons/link.png",
+               data: "Hall3",
+               rotation: 0.1,
+               coords: { "x": -0.7, "y": -3.5, "z": -7 }
+            },
+         ]
+   },
+
+   { //HallOHL
       name: "Hall4", //холлЗХЛ
       texture: "img/hall4.jpg",
       cameraTarget: { "x": -0.7, "y": 0, "z": 0 },
@@ -163,12 +189,38 @@ var views = [
          ]
    },
 
-   {
+   { //OHL1
+      name: "ZHL1", //ЗХЛ-1
+      texture: "img/hall4.jpg",
+      cameraTarget: { "x": -0.7, "y": 0, "z": 0 },
+      upAngle: Math.PI * 0.53,
+      downAngle: Math.PI * 0.465,
+      points:
+         [
+            {
+               type: "link",
+               texture: "img/icons/link.png",
+               data: "HallReception",
+               rotation: 0.3,
+               coords: { "x": -6.8, "y": -2.5, "z": -5 }
+            },
+
+            {
+               type: "link",
+               texture: "img/icons/link.png",
+               data: "Child",
+               rotation: -0.8,
+               coords: { "x": 5, "y": -3.3, "z": 7 }
+            },
+         ]
+   },
+
+   { //Child
       name: "Child",
-      texture: "img/child.jpg",
+      texture: "img/child1.jpg",
       cameraTarget: { "x": 1, "y": 0, "z": 0 },
-      upAngle: Math.PI * 0.57,
-      downAngle: Math.PI * 0.43,
+      upAngle: Math.PI * 0.55,
+      downAngle: Math.PI * 0.45,
       points:
          [
             {
@@ -183,52 +235,102 @@ var views = [
 ];
 
 var panelIcons = [
+   
+   {
+      name: "Map",
+      texture: "img/icons/map.png",
+      data: "someData",
+      coords: { "x": -1.4, "y": 0, "z": 0 }
+   },
+
    {
       name: "Plus",
       texture: "img/icons/plus.png",
       data: "someData",
-      coords: { "x": -1.2, "y": 0, "z": 0 }
+      coords: { "x": -1, "y": 0, "z": 0 }
    },
 
    {
       name: "Minus",
       texture: "img/icons/minus.png",
       data: "someData",
-      coords: { "x": -0.8, "y": 0, "z": 0 }
+      coords: { "x": -0.6, "y": 0, "z": 0 }
    },
 
    {
       name: "Left",
       texture: "img/icons/left.png",
       data: "someData",
-      coords: { "x": -0.4, "y": 0, "z": 0 }
+      coords: { "x": -0.2, "y": 0, "z": 0 }
    },
 
    {
       name: "Right",
       texture: "img/icons/right.png",
       data: "someData",
-      coords: { "x": 0, "y": 0, "z": 0 }
+      coords: { "x": 0.2, "y": 0, "z": 0 }
    },
 
    {
       name: "Up",
       texture: "img/icons/up.png",
       data: "someData",
-      coords: { "x": 0.4, "y": 0, "z": 0 }
+      coords: { "x": 0.6, "y": 0, "z": 0 }
    },
 
    {
       name: "Down",
       texture: "img/icons/down.png",
       data: "someData",
-      coords: { "x": 0.8, "y": 0, "z": 0 }
+      coords: { "x": 1, "y": 0, "z": 0 }
    },
 
    {
       name: "FullScreen",
       texture: "img/icons/fullscreen.png",
       data: "someData",
-      coords: { "x": 1.2, "y": 0, "z": 0 }
-   },
+      coords: { "x": 1.4, "y": 0, "z": 0 }
+   }
 ];
+
+var mapPoints = [
+   {
+      name: "Hall1",
+      coords: { "x": 0.11, "y": -0.41, "z": 0 }
+   },
+
+   {
+      name: "HallReception",
+      coords: { "x": -0.23, "y": -0.38, "z": 0 }
+   },
+
+   {
+      name: "Hall2",
+      coords: { "x": 0.4, "y": -0.41, "z": 0 }
+   },
+
+   {
+      name: "Hall3",
+      coords: { "x": 0.435, "y": -0.03, "z": 0 }
+   },
+
+   {
+      name: "Hall4",
+      coords: { "x": -0.42, "y": 0.1, "z": 0 }
+   },
+
+   {
+      name: "ODL1",
+      coords: { "x": 0.6, "y": 0.13, "z": 0 }
+   },
+
+   {
+      name: "Conf",
+      coords: { "x": 1.5, "y": 0.29, "z": 0 }
+   },
+
+   {
+      name: "Child",
+      coords: { "x": -0.44, "y": 0.34, "z": 0 }
+   }
+]

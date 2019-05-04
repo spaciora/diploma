@@ -9,10 +9,10 @@
 			margin: 0px;
 			overflow: hidden;
 
-			background: url(img/lib.jpg);
+			background: url(img/lib.jpg) no-repeat;
 
 			background-attachment: fixed;
-			background-size: 100vw;
+			background-size: cover;
 			background-position-y: 50%;
 		}
 
@@ -29,29 +29,30 @@
 		#footer {
 			position: fixed;
 			text-align: center;
-			/* Фиксированное положение */
+			font-size: 2.5vh;
+			font-family: Verdana, Geneva, Tahoma, sans-serif;
+
 			left: 0;
 			bottom: 0;
-			/* Левый нижний угол */
-			padding: 10px;
-			/* Поля вокруг текста */
+			padding: 1rem;
 			background: #ee5f00;
-			/* Цвет фона */
 			color: #fff;
-			/* Цвет текста */
 			width: 100%;
-			/* Ширина слоя */
 		}
 	</style>
 	<link rel="shortcut icon" href="img/logo.jpg" type="image/x-icon">
 </head>
 
 <body>
-	<script src="libs/jquery-3.3.1.js"></script>
-
-	<p><a href="tour.html"><img src="img/icons/link.png" width="50" height="50"></a></p>
 	
+	<script src="libs/jquery-3.3.1.js"></script>
+	<p><a href="tour.html"><img src="img/icons/link.png" width="50" height="50"></a></p>
+
+	<script>
+	</script>
+
 	<div id="footer"><b>Виртуальная экскурсия по ККМБ</b></div>
+
 </body>
 
 </html>
