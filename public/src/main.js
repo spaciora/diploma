@@ -39,11 +39,11 @@ function init() {
     scene = new THREE.Scene();
     camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1100); //fov, aspect, near, far
     raycaster = new THREE.Raycaster();
-    scene.add( new THREE.AxesHelper( 20 ) );
+    //scene.add( new THREE.AxesHelper( 20 ) );
 
     initSphere(); // Инициализация сферы и первого вида
     preInitMap(); // Инициализация сцены карты без ее показа
-    initMap();
+    //initMap();
 
     pointGeometry = new THREE.PlaneGeometry(1, 1, 1, 1);
     createPoints();

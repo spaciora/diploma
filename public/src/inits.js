@@ -40,7 +40,7 @@ function preInitMap() {
 
     if (window.innerHeight > window.innerWidth) {
         anotherCamera.position.z = 7;
-        anotherCamera.position.y = 1.9;
+        anotherCamera.position.y = 1.68;
     }
 }
 
@@ -48,7 +48,7 @@ function initMap() {
     mapInitialised = true;
 
     spriteGeometry = new THREE.PlaneGeometry(3.5, 1.3, 1, 1);
-    spriteTexture = new THREE.TextureLoader().load("img/icons/mapFrame1.png");
+    spriteTexture = new THREE.TextureLoader().load("img/icons/mapFrame2.png");
     spriteMaterial = new THREE.MeshBasicMaterial({ map: spriteTexture, transparent: true, color: 0xffffff});
     spriteMesh = new THREE.Mesh(spriteGeometry, spriteMaterial);
     //spriteMesh.rotation = 0.1 * Math.PI;
@@ -102,7 +102,7 @@ function initSphere() {
     geometry = new THREE.SphereGeometry(10, 50, 50);
     
     for (var i = 0; i < views.length; i++) {
-        if (views[i].name == "Hall1") {
+        if (views[i].name == "Conf") {
             currentView = views[i];
             break;
         }
