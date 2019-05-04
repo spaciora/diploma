@@ -102,7 +102,7 @@ function initSphere() {
     geometry = new THREE.SphereGeometry(10, 50, 50);
     
     for (var i = 0; i < views.length; i++) {
-        if (views[i].name == "Conf") {
+        if (views[i].name == "Hall1") {
             currentView = views[i];
             break;
         }
