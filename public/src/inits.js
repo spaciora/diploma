@@ -90,8 +90,8 @@ function unInitMap() {
 
 function initControls() {
     CONTROLS = new THREE.OrbitControls(camera, renderer.domElement);
-    CONTROLS.minPolarAngle = currentView.downAngle;
-    CONTROLS.maxPolarAngle = currentView.upAngle;
+    CONTROLS.minPolarAngle = Math.PI * currentView.downAngle;
+    CONTROLS.maxPolarAngle = Math.PI * currentView.upAngle;
     CONTROLS.enableDamping = true;
     CONTROLS.rotateSpeed = 0.2;
     CONTROLS.enablePan = false;
@@ -102,7 +102,7 @@ function initSphere() {
     geometry = new THREE.SphereGeometry(10, 50, 50);
     
     for (var i = 0; i < views.length; i++) {
-        if (views[i].name == "Hall1") {
+        if (views[i].name == "OHL5") {
             currentView = views[i];
             break;
         }

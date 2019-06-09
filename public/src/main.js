@@ -39,7 +39,7 @@ function init() {
     scene = new THREE.Scene();
     camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1100); //fov, aspect, near, far
     raycaster = new THREE.Raycaster();
-    //scene.add( new THREE.AxesHelper( 20 ) );
+    scene.add( new THREE.AxesHelper( 20 ) );
 
     initSphere(); // Инициализация сферы и первого вида
     preInitMap(); // Инициализация сцены карты без ее показа
@@ -84,8 +84,8 @@ function configuringView() {
 
     camera.position.set(currentView.cameraTarget.x, currentView.cameraTarget.y, currentView.cameraTarget.z);
 
-    CONTROLS.minPolarAngle = currentView.downAngle;
-    CONTROLS.maxPolarAngle = currentView.upAngle;
+    CONTROLS.minPolarAngle = Math.PI * currentView.downAngle;
+    CONTROLS.maxPolarAngle = Math.PI * currentView.upAngle;
 
     texture = new THREE.TextureLoader().load(currentView.texture);
     mesh.material.map = texture;
