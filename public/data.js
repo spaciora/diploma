@@ -529,6 +529,13 @@ var views = [
 var panelIcons = [
    
    {
+      name: "Sound",
+      texture: "img/icons/sound-on.png",
+      data: "someData",
+      coords: { "x": -1.8, "y": 0, "z": 0 }
+   },
+   
+   {
       name: "Map",
       texture: "img/icons/map.png",
       data: "someData",
@@ -578,10 +585,17 @@ var panelIcons = [
    },
 
    {
+      name: "Help",
+      texture: "img/icons/faq.png",
+      data: "someData",
+      coords: { "x": 1.4, "y": 0, "z": 0 }
+   },
+
+   {
       name: "FullScreen",
       texture: "img/icons/fullscreen.png",
       data: "someData",
-      coords: { "x": 1.4, "y": 0, "z": 0 }
+      coords: { "x": 1.8, "y": 0, "z": 0 }
    }
 ];
 

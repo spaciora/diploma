@@ -1,6 +1,4 @@
-function onMapClick(event) {
-    alert("wow, event works!");
-}
+
 
 function onPointerStart(event) {
 
@@ -9,6 +7,13 @@ function onPointerStart(event) {
     raycaster.setFromCamera(mouse, otherCamera);
     var intersects = raycaster.intersectObjects(buttons);
     if (intersects.length > 0) {
+        if (intersects[0].object.userData.type == "Sound"){
+            console.log(soundState);
+            var soundStateBuffer = intersects[0].object.material.map.image.currentSrc;
+            intersects[0].object.material.map = new THREE.TextureLoader().load(soundState);
+            soundState = soundStateBuffer;
+            console.log(soundState);
+        }
         panelClick(intersects[0].object);
     } else {
         raycaster.setFromCamera(mouse, anotherCamera);
@@ -16,8 +21,9 @@ function onPointerStart(event) {
         if (intersects.length > 0) {
             nextView = intersects[0].object.userData.name;
             console.log(nextView);
+            
             configuringView();
-            //unInitMap();
+            unInitMap();
         }
     }
 
@@ -27,6 +33,7 @@ function onPointerStart(event) {
         if (intersects.length > 0) {
             if (intersects[0].object.userData.type == "link") {
                 nextView = intersects[0].object.userData.URL;
+
                 configuringView();
             }
             if (intersects[0].object.userData.type == "info") {
@@ -48,11 +55,6 @@ function onPointerStart(event) {
             }
         }
     }
-
-
-
-
-
 }
 
 function onPointerStartTouch(event) {
@@ -81,7 +83,7 @@ function onPointerMove(event) {
 
             anotherINTERSECTED = intersects[0].object;
             anotherINTERSECTED.currentHex = anotherINTERSECTED.material.color.getHex();
-            anotherINTERSECTED.material.color.setHex(0xee5f00);
+            anotherINTERSECTED.material.color.setHex(0xff9447);
         }
     } else {
         if (anotherINTERSECTED) anotherINTERSECTED.material.color.setHex(anotherINTERSECTED.currentHex);
@@ -144,7 +146,3 @@ function onWindowResize() {
     anotherCamera.updateProjectionMatrix();
 }
 
-window.onload = function () {
-    PageLoaded = true;
-    console.log('Документ и все ресурсы загружены');
-};

@@ -6,8 +6,10 @@ var mouse = new THREE.Vector2(0, 0), INTERSECTED;
 var CSSRENDERER;
 var PageLoaded = false;
 var mapInitialised = false
+var soundState = "img/icons/sound-off.png";
 
 var points = [], buttons = [], mapViews = [];
+
 var currentView, nextView;
 
 var geometry, mesh, material, texture;
@@ -17,6 +19,14 @@ var pointTexture;
 
 var spriteGeometry, spriteMaterial, spriteMesh;
 var spriteTexture;
+
+var mapFrameGeometry, mapFrameMaterial, mapFrameMesh;
+var mapFrameTexture;
+
+var mapPointGeometry, mapPointMaterial, mapPointMesh;
+var mapPointTexture;
+
+const loadManager = new THREE.LoadingManager();
 
 if (WEBGL.isWebGLAvailable() === false) {
     document.body.appendChild(WEBGL.getWebGLErrorMessage());
@@ -39,7 +49,7 @@ function init() {
     scene = new THREE.Scene();
     camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1100); //fov, aspect, near, far
     raycaster = new THREE.Raycaster();
-    scene.add( new THREE.AxesHelper( 20 ) );
+    //scene.add( new THREE.AxesHelper( 20 ) );
 
     initSphere(); // Инициализация сферы и первого вида
     preInitMap(); // Инициализация сцены карты без ее показа
@@ -68,13 +78,12 @@ function init() {
     document.addEventListener('touchstart', onPointerStartTouch, false);
     container.addEventListener('touchend', onDocumentTouchEnd, false);
     window.addEventListener('resize', onWindowResize, false);
-    document.addEventListener('mapClicked', onMapClick, false);
 
     
 }
 
 function configuringView() {
-
+    $('#loading').fadeToggle();
     for (var i = 0; i < views.length; i++) {
         if (views[i].name == nextView) {
             currentView = views[i];
@@ -87,14 +96,15 @@ function configuringView() {
     CONTROLS.minPolarAngle = Math.PI * currentView.downAngle;
     CONTROLS.maxPolarAngle = Math.PI * currentView.upAngle;
 
-    texture = new THREE.TextureLoader().load(currentView.texture);
+    texture = new THREE.TextureLoader(loadManager).load(currentView.texture);
+
     mesh.material.map = texture;
 
     points.forEach(function (item, i, points) {
         scene.remove(points[i]);
     });
     points.length = 0;
-
+    
     createPoints();
 }
 
@@ -116,6 +126,8 @@ function createPoints() {
     points.forEach(function (item, i, points) {
         scene.add(points[i]);
     });
+
+    
 }
 
 function panelClick(object) {
@@ -150,13 +162,24 @@ function panelClick(object) {
             }
             break;
         case "Map":
-            //$('#map').fadeToggle();
             if (!mapInitialised) {
                 initMap();
             } else {
                 unInitMap();
             }
             break;
+        case "Sound":
+            //////
+        break;
+        case "Help":
+            $('#modal').iziModal('resetContent');
+            $('#modal').iziModal('setHeaderColor', "#ee5f00");
+            $('#modal').iziModal('setTitle', 'F.A.Q.');
+             $('#modal').iziModal('setTransitionIn', 'fadeInRight');
+             $('#modal').iziModal('setContent',
+                '<iframe height=500rem width=100% src="https://docs.google.com/viewerng/viewer?url=https://cit.tsn.47edu.ru/doc/Programma_provedenia_regionalnykh_UTS_24_11_2018.docx&embedded=true"></iframe>');
+            $('#modal').iziModal('open');
+        break;
     }
 }
 
@@ -182,3 +205,7 @@ function render() {
 
 
 
+loadManager.onLoad = () => { //onload для загрузки текстур для сферы
+    $('#loading').fadeToggle();
+    //console.log("Текстура сферы загружена загружены");
+  };
