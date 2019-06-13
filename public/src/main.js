@@ -28,6 +28,12 @@ var mapPointTexture;
 
 const loadManager = new THREE.LoadingManager();
 
+var audio = new Audio(); // Создаём новый элемент Audio
+audio.preload = true;
+audio.src = 'mus.mp3'; // Указываем путь к звуку "клика"
+//audio.autoplay = true;
+audio.loop = true;
+
 if (WEBGL.isWebGLAvailable() === false) {
     document.body.appendChild(WEBGL.getWebGLErrorMessage());
 }
@@ -49,7 +55,7 @@ function init() {
     scene = new THREE.Scene();
     camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1100); //fov, aspect, near, far
     raycaster = new THREE.Raycaster();
-    //scene.add( new THREE.AxesHelper( 20 ) );
+    scene.add( new THREE.AxesHelper( 20 ) );
 
     initSphere(); // Инициализация сферы и первого вида
     preInitMap(); // Инициализация сцены карты без ее показа
@@ -127,7 +133,16 @@ function createPoints() {
         scene.add(points[i]);
     });
 
-    
+    pointGeometry = new THREE.PlaneGeometry(2.5, 2.5, 1, 1);
+    pointTexture = new THREE.TextureLoader().load("img/shorsik.png");
+    pointMaterial = new THREE.MeshBasicMaterial({ map: pointTexture, transparent: true });
+    pointMesh = new THREE.Mesh(pointGeometry, pointMaterial);
+    pointMesh.rotation.y = 0;
+    pointMesh.position.x = 0;
+    pointMesh.position.y = 0;
+    pointMesh.position.z = -6;
+    pointMesh.scale.y = -1;
+    scene.add(pointMesh);
 }
 
 function panelClick(object) {
@@ -169,7 +184,11 @@ function panelClick(object) {
             }
             break;
         case "Sound":
-            //////
+            if (!audio.paused) {
+                audio.pause();
+            } else {
+                audio.play();
+            }
         break;
         case "Help":
             $('#modal').iziModal('resetContent');

@@ -273,6 +273,74 @@ var views = [
          ]
    },
 
+   { //ODL5
+      name: "ODL5", //ЗДЛ5
+      texture: "img/odl5.jpg",
+      cameraTarget: { "x": -0.1, "y": 0, "z": 0 },
+      upAngle:  0.57,
+      downAngle:  0.43,
+      points:
+         [
+            {
+               type: "link",
+               texture: "img/icons/link.png",
+               data: "ODL2",
+               rotation: 0.7,
+               coords: { "x": -7, "y": -3.5, "z": 4 }
+            },
+
+            {
+               type: "link",
+               texture: "img/icons/link.png",
+               data: "ODL3",
+               rotation: 0.6,
+               coords: { "x": -9, "y": -2, "z": 1.5 }
+            },
+
+            {
+               type: "link",
+               texture: "img/icons/link.png",
+               data: "ODL5",
+               rotation: -0.5,
+               coords: { "x": 9, "y": -1.5, "z": 0 }
+            },
+         ]
+   },
+ 
+   { //ODL6
+      name: "ODL6", //ЗДЛ6
+      texture: "img/odl6.jpg",
+      cameraTarget: { "x": -0.1, "y": 0, "z": 0 },
+      upAngle:  0.57,
+      downAngle:  0.43,
+      points:
+         [
+            {
+               type: "link",
+               texture: "img/icons/link.png",
+               data: "ODL2",
+               rotation: 0.7,
+               coords: { "x": -7, "y": -3.5, "z": 4 }
+            },
+
+            {
+               type: "link",
+               texture: "img/icons/link.png",
+               data: "ODL3",
+               rotation: 0.6,
+               coords: { "x": -9, "y": -2, "z": 1.5 }
+            },
+
+            {
+               type: "link",
+               texture: "img/icons/link.png",
+               data: "ODL5",
+               rotation: -0.5,
+               coords: { "x": 9, "y": -1.5, "z": 0 }
+            },
+         ]
+   },
+
    { //HallOHL
       name: "Hall4", //холлЗХЛ
       texture: "img/hall4.jpg",
