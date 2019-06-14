@@ -98,19 +98,9 @@ function onPointerMove(event) {
 
                 INTERSECTED = intersects[0].object;
                 INTERSECTED.geometry = new THREE.PlaneGeometry(1.2, 1.2, 1, 1);
-
-                /*if (INTERSECTED) INTERSECTED.material.color.setHex(INTERSECTED.currentHex);
-
-                INTERSECTED = intersects[0].object;
-                INTERSECTED.currentHex = INTERSECTED.material.color.getHex();
-                INTERSECTED.material.color.setHex(0xee5f00);
-                console.log(INTERSECTED.geometry);*/
-                
-                
             }
         } else {
             if (INTERSECTED) {
-                //INTERSECTED.material.color.setHex(INTERSECTED.currentHex);
                 INTERSECTED.geometry = new THREE.PlaneGeometry(1, 1, 1, 1);
             }
             INTERSECTED = null;
@@ -131,8 +121,6 @@ function onPointerMove(event) {
         if (otherINTERSECTED) otherINTERSECTED.material.color.setHex(otherINTERSECTED.currentHex);
         otherINTERSECTED = null;
     }
-
-
 }
 
 function onDocumentMouseWheel(event) {

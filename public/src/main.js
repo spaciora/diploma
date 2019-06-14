@@ -25,7 +25,7 @@ var mapFrameTexture;
 
 var mapPointGeometry, mapPointMaterial, mapPointMesh;
 var mapPointTexture;
-
+var mapMeshes = [];
 const loadManager = new THREE.LoadingManager();
 
 var audio = new Audio(); // Создаём новый элемент Audio
@@ -39,54 +39,9 @@ if (WEBGL.isWebGLAvailable() === false) {
 }
 
 init();
-animate();
 $("#modal").iziModal();
+animate();
 
-function init() {
-    var container;
-
-    container = document.getElementById("container");
-    document.body.appendChild(container);
-
-    //map = document.getElementById("map");
-    //document.body.appendChild(map);
-    
-
-    scene = new THREE.Scene();
-    camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1100); //fov, aspect, near, far
-    raycaster = new THREE.Raycaster();
-    scene.add( new THREE.AxesHelper( 20 ) );
-
-    initSphere(); // Инициализация сферы и первого вида
-    preInitMap(); // Инициализация сцены карты без ее показа
-    //initMap();
-
-    pointGeometry = new THREE.PlaneGeometry(1, 1, 1, 1);
-    createPoints();
-
-    initControlPanel(); // Инициализация панели управления
-   
-
-    ////////Блок инициализации рендереров/////////
-    renderer = new THREE.WebGLRenderer();
-    renderer.setPixelRatio(window.devicePixelRatio);
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.autoClear = false;
-    container.appendChild(renderer.domElement);
-    //map.appendChild(renderer.domElement);
-    //////////////////////////////////////////////
-
-    initControls(); // Инициализации контроллеров камеры
-
-    document.addEventListener('mousedown', onPointerStart, false);
-    document.addEventListener('mousemove', onPointerMove, false);
-    document.addEventListener('wheel', onDocumentMouseWheel, false);
-    document.addEventListener('touchstart', onPointerStartTouch, false);
-    container.addEventListener('touchend', onDocumentTouchEnd, false);
-    window.addEventListener('resize', onWindowResize, false);
-
-    
-}
 
 function configuringView() {
     $('#loading').fadeToggle();
@@ -116,6 +71,7 @@ function configuringView() {
 
 function createPoints() {
 
+    pointGeometry = new THREE.PlaneGeometry(1, 1, 1, 1);
     currentView.points.forEach(function (item, i, point) {
         pointTexture = new THREE.TextureLoader().load(point[i].texture);
         pointMaterial = new THREE.MeshBasicMaterial({ map: pointTexture, transparent: true });

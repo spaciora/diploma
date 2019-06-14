@@ -1,3 +1,49 @@
+function init() {
+    var container;
+
+    container = document.getElementById("container");
+    document.body.appendChild(container);
+
+    //map = document.getElementById("map");
+    //document.body.appendChild(map);
+    
+
+    scene = new THREE.Scene();
+    camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1100); //fov, aspect, near, far
+    raycaster = new THREE.Raycaster();
+    scene.add( new THREE.AxesHelper( 20 ) );
+
+    initSphere(); // Инициализация сферы и первого вида
+    preInitMap(); // Инициализация сцены карты без ее показа
+    //initMap();
+
+    pointGeometry = new THREE.PlaneGeometry(1, 1, 1, 1);
+    createPoints();
+
+    initControlPanel(); // Инициализация панели управления
+   
+
+    ////////Блок инициализации рендереров/////////
+    renderer = new THREE.WebGLRenderer();
+    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.autoClear = false;
+    container.appendChild(renderer.domElement);
+    //map.appendChild(renderer.domElement);
+    //////////////////////////////////////////////
+
+    initControls(); // Инициализации контроллеров камеры
+
+    document.addEventListener('mousedown', onPointerStart, false);
+    document.addEventListener('mousemove', onPointerMove, false);
+    document.addEventListener('wheel', onDocumentMouseWheel, false);
+    document.addEventListener('touchstart', onPointerStartTouch, false);
+    container.addEventListener('touchend', onDocumentTouchEnd, false);
+    window.addEventListener('resize', onWindowResize, false);
+
+    
+}
+
 function initControlPanel() {
     otherScene = new THREE.Scene();
     otherCamera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -93,12 +139,9 @@ function initMap() {
 function unInitMap() {
     mapInitialised = false;
     mapViews.length = [];
-    //anotherScene.remove.apply(anotherScene, anotherScene.children);
-    
-    anotherScene.children.forEach(function (item, i, child) {
-        anotherScene.remove(child[i]);
-    });
-   
+    while(anotherScene.children.length > 0){ 
+        anotherScene.remove(anotherScene.children[0]); 
+    }
 }
 
 function initControls() {
