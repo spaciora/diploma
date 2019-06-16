@@ -39,7 +39,7 @@ if (WEBGL.isWebGLAvailable() === false) {
 }
 
 init();
-$("#modal").iziModal();
+//$("#modal").iziModal();
 animate();
 
 
@@ -69,13 +69,13 @@ function configuringView() {
         scene.remove(points[i]);
     });
     points.length = 0;
-    
+
     createPoints();
 }
 
 function createPoints() {
 
-    
+
     currentView.points.forEach(function (item, i, point) {
         pointGeometry = new THREE.PlaneGeometry(point[i].size, point[i].size, 1, 1);
         pointTexture = new THREE.TextureLoader().load(point[i].texture);
@@ -86,7 +86,12 @@ function createPoints() {
         pointMesh.position.y = point[i].coords.y;
         pointMesh.position.z = point[i].coords.z;
         pointMesh.scale.y = -1;
-        pointMesh.userData = { URL: point[i].data, type: point[i].type, size: point[i].size, highlightSize: point[i].highlightSize };
+        if (point[i].type == "info") {
+            pointMesh.userData = { title: point[i].dataTitle, URL: point[i].data, type: point[i].type, size: point[i].size, highlightSize: point[i].highlightSize };
+        } else {
+            pointMesh.userData = { URL: point[i].data, type: point[i].type, size: point[i].size, highlightSize: point[i].highlightSize };
+        }
+
         points.push(pointMesh);
     });
 
@@ -94,16 +99,6 @@ function createPoints() {
         scene.add(points[i]);
     });
 
-    /*pointGeometry = new THREE.PlaneGeometry(2.5, 2.5, 1, 1);
-    pointTexture = new THREE.TextureLoader().load("img/design/shorsik.png");
-    pointMaterial = new THREE.MeshBasicMaterial({ map: pointTexture, transparent: true });
-    pointMesh = new THREE.Mesh(pointGeometry, pointMaterial);
-    pointMesh.rotation.y = 0;
-    pointMesh.position.x = 0;
-    pointMesh.position.y = 0;
-    pointMesh.position.z = -6;
-    pointMesh.scale.y = -1;
-    scene.add(pointMesh);*/
 }
 
 function panelClick(object) {
@@ -150,16 +145,20 @@ function panelClick(object) {
             } else {
                 audio.play();
             }
-        break;
+            break;
         case "Help":
             $('#modal').iziModal('resetContent');
+            $('#modal').iziModal({
+                iframe: true,
+                iframeURL: "info/placeholder.pdf",
+                iframeHeight: 500,
+                iframeWidth: 200,
+            });
             $('#modal').iziModal('setHeaderColor', "#ee5f00");
             $('#modal').iziModal('setTitle', 'F.A.Q.');
-             $('#modal').iziModal('setTransitionIn', 'fadeInRight');
-             $('#modal').iziModal('setContent',
-                '<iframe height=500rem width=100% src="https://docs.google.com/viewerng/viewer?url=https://cit.tsn.47edu.ru/doc/Programma_provedenia_regionalnykh_UTS_24_11_2018.docx&embedded=true"></iframe>');
+            $('#modal').iziModal('setTransitionIn', 'fadeInRight');
             $('#modal').iziModal('open');
-        break;
+            break;
     }
 }
 
@@ -177,7 +176,7 @@ function render() {
     renderer.render(scene, camera);
     renderer.clearDepth();
     renderer.render(otherScene, otherCamera);
-    if(mapInitialised) {
+    if (mapInitialised) {
         renderer.clearDepth();
         renderer.render(anotherScene, anotherCamera);
     }
@@ -189,4 +188,4 @@ loadManager.onLoad = () => { //onload для загрузки текстур д�
     console.log("load manager toggle");
     $('#loading').fadeToggle();
     console.log("Текстура сферы загружена загружены");
-  };
+};

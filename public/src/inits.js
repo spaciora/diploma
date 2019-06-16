@@ -47,8 +47,8 @@ function initControlPanel() {
     otherCamera.position.y = 1.8;
 
     if (window.innerHeight > window.innerWidth) {
-        otherCamera.position.z = 7;
-        otherCamera.position.y = -2.5;
+        otherCamera.position.z = 7.5;
+        otherCamera.position.y = 2.5;
     }
 
     spriteGeometry = new THREE.PlaneGeometry(4, 0.43, 1, 1);
@@ -75,13 +75,14 @@ function initControlPanel() {
 }
 
 function preInitMap() {
+    
     anotherScene = new THREE.Scene();
     anotherCamera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
     anotherCamera.position.z = 5;
     anotherCamera.position.y = 0.98;
 
     if (window.innerHeight > window.innerWidth) {
-        anotherCamera.position.z = 7;
+        anotherCamera.position.z = 7.5;
         anotherCamera.position.y = 1.68;
     }
 }
@@ -150,7 +151,7 @@ function initSphere() {
     geometry = new THREE.SphereGeometry(10, 50, 50);
 
     for (var i = 0; i < views.length; i++) {
-        if (views[i].name == "HallReception") {
+        if (views[i].name == "Hall1") {
             currentView = views[i];
             break;
         }
