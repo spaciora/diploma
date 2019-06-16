@@ -4,24 +4,20 @@ function init() {
     container = document.getElementById("container");
     document.body.appendChild(container);
 
-    //map = document.getElementById("map");
-    //document.body.appendChild(map);
-    
-
     scene = new THREE.Scene();
     camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1100); //fov, aspect, near, far
     raycaster = new THREE.Raycaster();
-    scene.add( new THREE.AxesHelper( 20 ) );
+    scene.add(new THREE.AxesHelper(20));
 
     initSphere(); // Инициализация сферы и первого вида
     preInitMap(); // Инициализация сцены карты без ее показа
     //initMap();
 
-    pointGeometry = new THREE.PlaneGeometry(1, 1, 1, 1);
+    //pointGeometry = new THREE.PlaneGeometry(1, 1, 1, 1);
     createPoints();
 
     initControlPanel(); // Инициализация панели управления
-   
+
 
     ////////Блок инициализации рендереров/////////
     renderer = new THREE.WebGLRenderer();
@@ -41,7 +37,7 @@ function init() {
     container.addEventListener('touchend', onDocumentTouchEnd, false);
     window.addEventListener('resize', onWindowResize, false);
 
-    
+
 }
 
 function initControlPanel() {
@@ -56,7 +52,7 @@ function initControlPanel() {
     }
 
     spriteGeometry = new THREE.PlaneGeometry(4, 0.43, 1, 1);
-    spriteTexture = new THREE.TextureLoader().load("img/icons/panelFrame2.png");
+    spriteTexture = new THREE.TextureLoader().load("img/design/panelFrame.png");
     spriteMaterial = new THREE.MeshBasicMaterial({ map: spriteTexture, transparent: true });
     spriteMesh = new THREE.Mesh(spriteGeometry, spriteMaterial);
     spriteMesh.rotation = 0.1 * Math.PI;
@@ -83,7 +79,6 @@ function preInitMap() {
     anotherCamera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
     anotherCamera.position.z = 5;
     anotherCamera.position.y = 0.98;
-    //anotherCamera.position.x = 3;
 
     if (window.innerHeight > window.innerWidth) {
         anotherCamera.position.z = 7;
@@ -95,42 +90,39 @@ function initMap() {
     mapInitialised = true;
 
     spriteGeometry = new THREE.PlaneGeometry(3.4, 1.5, 1, 1);
-    spriteTexture = new THREE.TextureLoader().load("img/icons/mapFrame6.png"); 
-    spriteMaterial = new THREE.MeshBasicMaterial({ map: spriteTexture, transparent: true, color: 0xffffff});
+    spriteTexture = new THREE.TextureLoader().load("img/design/mapFrame.png");
+    spriteMaterial = new THREE.MeshBasicMaterial({ map: spriteTexture, transparent: true, color: 0xffffff });
     spriteMesh = new THREE.Mesh(spriteGeometry, spriteMaterial);
-    //spriteMesh.rotation = 0.1 * Math.PI;
     spriteMesh.scale.y = -1;
-    //spriteMesh.scale.x = -1;
     spriteMesh.position.x = -0.3;
     spriteMesh.position.y = 0.095;
     anotherScene.add(spriteMesh);
 
     spriteGeometry = new THREE.PlaneGeometry(3.3, 1.1, 1, 1);
-    spriteTexture = new THREE.TextureLoader().load("img/map4.png"); 
+    spriteTexture = new THREE.TextureLoader().load("img/design/map.png");
     spriteMaterial = new THREE.MeshBasicMaterial({ map: spriteTexture, transparent: true });
     spriteMesh = new THREE.Mesh(spriteGeometry, spriteMaterial);
-    //spriteMesh.rotation = 0.1 * Math.PI;
     spriteMesh.scale.y = -1;
-    //spriteMesh.scale.x = -1;
     spriteMesh.position.x = -0.3;
     spriteMesh.position.y = 0.18;
     anotherScene.add(spriteMesh);
 
     mapPoints.forEach(function (item, i, mapPoint) {
-        spriteTexture = new THREE.TextureLoader().load("img/icons/link.png");
+        spriteTexture = new THREE.TextureLoader().load("img/icons/hunt.png");
         spriteGeometry = new THREE.PlaneGeometry(0.2, 0.2, 1, 1);
         spriteMaterial = new THREE.MeshBasicMaterial({ map: spriteTexture, transparent: true });
         spriteMesh = new THREE.Mesh(spriteGeometry, spriteMaterial);
-        spriteMesh.position.x = mapPoint[i].coords.x-0.3;
-        spriteMesh.position.y = mapPoint[i].coords.y+0.18;
+        spriteMesh.position.x = mapPoint[i].coords.x - 0.3;
+        spriteMesh.position.y = mapPoint[i].coords.y + 0.18;
         spriteMesh.position.z = mapPoint[i].coords.z;
         spriteMesh.scale.y = -1;
         spriteMesh.userData = { name: mapPoint[i].name };
-        //console.log(currentView.name);
-        if (currentView.name == spriteMesh.userData.name){
+
+        if (currentView.name == spriteMesh.userData.name) {
             spriteMaterial.color.setHex(0xff7614);
+            spriteMaterial.map = new THREE.TextureLoader().load("img/icons/mapPlace.png");
         }
-        //console.log(spriteMesh.userData);
+
         anotherScene.add(spriteMesh);
         mapViews.push(spriteMesh);
     });
@@ -139,8 +131,8 @@ function initMap() {
 function unInitMap() {
     mapInitialised = false;
     mapViews.length = [];
-    while(anotherScene.children.length > 0){ 
-        anotherScene.remove(anotherScene.children[0]); 
+    while (anotherScene.children.length > 0) {
+        anotherScene.remove(anotherScene.children[0]);
     }
 }
 
@@ -156,9 +148,9 @@ function initControls() {
 
 function initSphere() {
     geometry = new THREE.SphereGeometry(10, 50, 50);
-    
+
     for (var i = 0; i < views.length; i++) {
-        if (views[i].name == "Hall1") {
+        if (views[i].name == "HallReception") {
             currentView = views[i];
             break;
         }
@@ -171,5 +163,5 @@ function initSphere() {
     mesh.scale.x = -1;
 
     scene.add(mesh);
-    
+
 }

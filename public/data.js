@@ -1,13 +1,18 @@
+var pointSize = 0.9;
+var highlightPointSize = 1;
+
 var views = [
    { //Hall1
       name: "Hall1", //вход
-      texture: "img/hall1.jpg",
+      texture: "img/views/hall1.jpg",
       cameraTarget: { "x": 0.1, "y": 0, "z": -0.2 },
       upAngle:  0.63, //чем меньше, тем меньше угол (max)
       downAngle:  0.37, //чем больше, тем меньше угол (min)
       points:
          [
             {
+               size: pointSize,
+               highlightSize: highlightPointSize,
                type: "link",
                texture: "img/icons/link.png",
                data: "HallReception",
@@ -16,6 +21,8 @@ var views = [
             },
 
             {
+               size: pointSize,
+               highlightSize: highlightPointSize,
                type: "info",
                texture: "img/icons/info.png",
                data: "info/HallReceptionInfo.txt",
@@ -24,6 +31,8 @@ var views = [
             },
 
             {
+               size: pointSize,
+               highlightSize: highlightPointSize,
                type: "link",
                texture: "img/icons/link.png",
                data: "Hall2",
@@ -35,21 +44,25 @@ var views = [
 
    { //Conf
       name: "Conf",
-      texture: "img/conf.jpg",
+      texture: "img/views/conf.jpg",
       cameraTarget: { "x": -0.1, "y": 0, "z": 0.1 },
       upAngle:  0.6,
       downAngle:  0.4,
       points:
          [
             {
+               size: pointSize,
+               highlightSize: highlightPointSize,
                type: "link",
                texture: "img/icons/link.png",
-               data: "Hall3",
+               data: "ODL6",
                rotation: 0.6,
                coords: { "x": -8, "y": -1.5, "z": 0.9 }
             },
 
             {
+               size: pointSize,
+               highlightSize: highlightPointSize,
                type: "info",
                texture: "img/icons/info.png",
                data: "info/HallReceptionInfo.txt",
@@ -61,13 +74,15 @@ var views = [
 
    { //HallReception
       name: "HallReception",
-      texture: "img/hallreception.jpg",
+      texture: "img/views/hallreception.jpg",
       cameraTarget: { "x": -0.01, "y": 0, "z": 0.01 },
       upAngle:  0.55,
       downAngle:  0.45,
       points:
          [
             {
+               size: pointSize,
+               highlightSize: highlightPointSize,
                type: "link",
                texture: "img/icons/link.png",
                data: "Hall1",
@@ -76,24 +91,38 @@ var views = [
             },
 
             {
+               size: pointSize,
+               highlightSize: highlightPointSize,
                type: "link",
                texture: "img/icons/link.png",
                data: "Hall4",
                rotation: -0.5,
                coords: { "x": 8.5, "y": -2.2, "z": -0.8 }
             },
+
+            {
+               size: 3,
+               highlightSize: 3.1,
+               type: "info",
+               texture: "img/design/shorsik.png",
+               data: "Hall4",
+               rotation: -0.1,
+               coords: { "x": 3.9, "y": 0.7, "z": -6 }
+            },
          ]
    },
 
    { //HallIQ
       name: "Hall2", //холлIQ
-      texture: "img/hall2.jpg",
+      texture: "img/views/hall2.jpg",
       cameraTarget: { "x": -0.3, "y": 0, "z": -0.2 },
       upAngle:  0.525,
       downAngle:  0.49,
       points:
          [
             {
+               size: pointSize,
+               highlightSize: highlightPointSize,
                type: "link",
                texture: "img/icons/link.png",
                data: "Hall1",
@@ -102,6 +131,8 @@ var views = [
             },
 
             {
+               size: pointSize,
+               highlightSize: highlightPointSize,
                type: "link",
                texture: "img/icons/link.png",
                data: "Hall3",
@@ -110,6 +141,8 @@ var views = [
             },
 
             {
+               size: pointSize,
+               highlightSize: highlightPointSize,
                type: "link",
                texture: "img/icons/link.png",
                data: "IQ1",
@@ -121,13 +154,15 @@ var views = [
 
    { //HallODL
       name: "Hall3", //холлЗДЛ
-      texture: "img/hall3.jpg",
+      texture: "img/views/hall3.jpg",
       cameraTarget: { "x": -0.01, "y": 0, "z": 0.01 },
       upAngle:  0.535,
       downAngle:  0.465,
       points:
          [
             {
+               size: pointSize,
+               highlightSize: highlightPointSize,
                type: "link",
                texture: "img/icons/link.png",
                data: "Hall2",
@@ -136,6 +171,8 @@ var views = [
             },
 
             {
+               size: pointSize,
+               highlightSize: highlightPointSize,
                type: "link",
                texture: "img/icons/link.png",
                data: "ODL1",
@@ -147,13 +184,15 @@ var views = [
 
    { //ODL1
       name: "ODL1", //ЗДЛ1
-      texture: "img/odl1.jpg",
+      texture: "img/views/odl1.jpg",
       cameraTarget: { "x": 0, "y": 0, "z": -0.1 },
       upAngle:  0.56,
       downAngle:  0.437,
       points:
          [
             {
+               size: pointSize,
+               highlightSize: highlightPointSize,
                type: "link",
                texture: "img/icons/link.png",
                data: "ODL2",
@@ -162,6 +201,8 @@ var views = [
             },
 
             {
+               size: pointSize,
+               highlightSize: highlightPointSize,
                type: "link",
                texture: "img/icons/link.png",
                data: "Hall3",
@@ -170,6 +211,8 @@ var views = [
             },
 
             {
+               size: pointSize,
+               highlightSize: highlightPointSize,
                type: "link",
                texture: "img/icons/link.png",
                data: "ODL5",
@@ -181,13 +224,15 @@ var views = [
 
    { //ODL2
       name: "ODL2", //ЗДЛ2
-      texture: "img/odl2.jpg",
+      texture: "img/views/odl2.jpg",
       cameraTarget: { "x": 0, "y": 0, "z": 0.1 },
       upAngle:  0.58,
       downAngle:  0.42,
       points:
          [
             {
+               size: pointSize,
+               highlightSize: highlightPointSize,
                type: "link",
                texture: "img/icons/link.png",
                data: "ODL1",
@@ -196,6 +241,8 @@ var views = [
             },
 
             {
+               size: pointSize,
+               highlightSize: highlightPointSize,
                type: "link",
                texture: "img/icons/link.png",
                data: "ODL3",
@@ -204,6 +251,8 @@ var views = [
             },
 
             {
+               size: pointSize,
+               highlightSize: highlightPointSize,
                type: "link",
                texture: "img/icons/link.png",
                data: "ODL4",
@@ -215,13 +264,15 @@ var views = [
 
    { //ODL3
       name: "ODL3", //ЗДЛ3
-      texture: "img/odl3.jpg",
+      texture: "img/views/odl3.jpg",
       cameraTarget: { "x": -0.1, "y": 0, "z": 0 },
       upAngle:  0.575,
       downAngle:  0.425,
       points:
          [
             {
+               size: pointSize,
+               highlightSize: highlightPointSize,
                type: "link",
                texture: "img/icons/link.png",
                data: "ODL2",
@@ -230,6 +281,8 @@ var views = [
             },
 
             {
+               size: pointSize,
+               highlightSize: highlightPointSize,
                type: "link",
                texture: "img/icons/link.png",
                data: "ODL4",
@@ -241,13 +294,15 @@ var views = [
 
    { //ODL4
       name: "ODL4", //ЗДЛ4
-      texture: "img/odl4.jpg",
+      texture: "img/views/odl4.jpg",
       cameraTarget: { "x": -0.1, "y": 0, "z": 0 },
       upAngle:  0.57,
       downAngle:  0.43,
       points:
          [
             {
+               size: pointSize,
+               highlightSize: highlightPointSize,
                type: "link",
                texture: "img/icons/link.png",
                data: "ODL2",
@@ -256,6 +311,8 @@ var views = [
             },
 
             {
+               size: pointSize,
+               highlightSize: highlightPointSize,
                type: "link",
                texture: "img/icons/link.png",
                data: "ODL3",
@@ -264,6 +321,8 @@ var views = [
             },
 
             {
+               size: pointSize,
+               highlightSize: highlightPointSize,
                type: "link",
                texture: "img/icons/link.png",
                data: "ODL5",
@@ -275,13 +334,15 @@ var views = [
 
    { //ODL5
       name: "ODL5", //ЗДЛ5
-      texture: "img/odl5.jpg",
+      texture: "img/views/odl5.jpg",
       cameraTarget: { "x": -0.1, "y": 0, "z": 0 },
       upAngle:  0.57,
       downAngle:  0.43,
       points:
          [
             {
+               size: pointSize,
+               highlightSize: highlightPointSize,
                type: "link",
                texture: "img/icons/link.png",
                data: "ODL2",
@@ -290,6 +351,8 @@ var views = [
             },
 
             {
+               size: pointSize,
+               highlightSize: highlightPointSize,
                type: "link",
                texture: "img/icons/link.png",
                data: "ODL3",
@@ -298,6 +361,8 @@ var views = [
             },
 
             {
+               size: pointSize,
+               highlightSize: highlightPointSize,
                type: "link",
                texture: "img/icons/link.png",
                data: "ODL5",
@@ -309,13 +374,15 @@ var views = [
  
    { //ODL6
       name: "ODL6", //ЗДЛ6
-      texture: "img/odl6.jpg",
+      texture: "img/views/odl6.jpg",
       cameraTarget: { "x": -0.1, "y": 0, "z": 0 },
       upAngle:  0.57,
       downAngle:  0.43,
       points:
          [
             {
+               size: pointSize,
+               highlightSize: highlightPointSize,
                type: "link",
                texture: "img/icons/link.png",
                data: "ODL2",
@@ -324,6 +391,8 @@ var views = [
             },
 
             {
+               size: pointSize,
+               highlightSize: highlightPointSize,
                type: "link",
                texture: "img/icons/link.png",
                data: "ODL3",
@@ -332,6 +401,8 @@ var views = [
             },
 
             {
+               size: pointSize,
+               highlightSize: highlightPointSize,
                type: "link",
                texture: "img/icons/link.png",
                data: "ODL5",
@@ -343,13 +414,15 @@ var views = [
 
    { //HallOHL
       name: "Hall4", //холлЗХЛ
-      texture: "img/hall4.jpg",
+      texture: "img/views/hall4.jpg",
       cameraTarget: { "x": -0.7, "y": 0, "z": 0 },
       upAngle:  0.53,
       downAngle:  0.465,
       points:
          [
             {
+               size: pointSize,
+               highlightSize: highlightPointSize,
                type: "link",
                texture: "img/icons/link.png",
                data: "HallReception",
@@ -358,6 +431,8 @@ var views = [
             },
 
             {
+               size: pointSize,
+               highlightSize: highlightPointSize,
                type: "link",
                texture: "img/icons/link.png",
                data: "Child",
@@ -366,6 +441,8 @@ var views = [
             },
 
             {
+               size: pointSize,
+               highlightSize: highlightPointSize,
                type: "link",
                texture: "img/icons/link.png",
                data: "OHL1",
@@ -377,13 +454,15 @@ var views = [
 
    { //OHL1
       name: "OHL1", //ЗХЛ-1
-      texture: "img/ohl1.jpg",
+      texture: "img/views/ohl1.jpg",
       cameraTarget: { "x": -0.7, "y": 0, "z": 0 },
       upAngle:  0.56,
       downAngle:  0.445,
       points:
          [
             {
+               size: pointSize,
+               highlightSize: highlightPointSize,
                type: "link",
                texture: "img/icons/link.png",
                data: "OHL2",
@@ -392,6 +471,8 @@ var views = [
             },
 
             {
+               size: pointSize,
+               highlightSize: highlightPointSize,
                type: "link",
                texture: "img/icons/link.png",
                data: "Hall4",
@@ -403,13 +484,15 @@ var views = [
 
    { //OHL2
       name: "OHL2", //ЗХЛ-2
-      texture: "img/ohl2res.jpg",
+      texture: "img/views/ohl2res.jpg",
       cameraTarget: { "x": -0.7, "y": 0, "z": 0 },
       upAngle:  0.61,
       downAngle:  0.39,
       points:
          [
             {
+               size: pointSize,
+               highlightSize: highlightPointSize,
                type: "link",
                texture: "img/icons/link.png",
                data: "OHL1",
@@ -418,6 +501,8 @@ var views = [
             },
 
             {
+               size: pointSize,
+               highlightSize: highlightPointSize,
                type: "link",
                texture: "img/icons/link.png",
                data: "OHL3",
@@ -429,13 +514,15 @@ var views = [
 
    { //OHL3
       name: "OHL3", //ЗХЛ-3
-      texture: "img/ohl3.jpg",
+      texture: "img/views/ohl3.jpg",
       cameraTarget: { "x": -0.7, "y": 0, "z": 0 },
       upAngle:  0.55,
       downAngle:  0.45,
       points:
          [
             {
+               size: pointSize,
+               highlightSize: highlightPointSize,
                type: "link",
                texture: "img/icons/link.png",
                data: "OHL2",
@@ -444,6 +531,8 @@ var views = [
             },
 
             {
+               size: pointSize,
+               highlightSize: highlightPointSize,
                type: "link",
                texture: "img/icons/link.png",
                data: "OHL4",
@@ -456,13 +545,15 @@ var views = [
 
    { //OHL4
       name: "OHL4", //ЗХЛ-4
-      texture: "img/ohl4.jpg",
+      texture: "img/views/ohl4.jpg",
       cameraTarget: { "x": -0.7, "y": 0, "z": 0 },
       upAngle:  0.61,
       downAngle:  0.39,
       points:
          [
             {
+               size: pointSize,
+               highlightSize: highlightPointSize,
                type: "link",
                texture: "img/icons/link.png",
                data: "OHL3",
@@ -471,6 +562,8 @@ var views = [
             },
 
             {
+               size: pointSize,
+               highlightSize: highlightPointSize,
                type: "link",
                texture: "img/icons/link.png",
                data: "OHL5",
@@ -483,13 +576,15 @@ var views = [
 
    { //OHL5
       name: "OHL5", //ЗХЛ-5
-      texture: "img/ohl5.jpg",
+      texture: "img/views/ohl5.jpg",
       cameraTarget: { "x": -0.7, "y": 0, "z": 0 },
       upAngle:  0.56,
       downAngle:  0.44,
       points:
          [
             {
+               size: pointSize,
+               highlightSize: highlightPointSize,
                type: "link",
                texture: "img/icons/link.png",
                data: "OHL4",
@@ -503,13 +598,15 @@ var views = [
 
    { //IQ1
       name: "IQ1", //IQ-1
-      texture: "img/iq1.jpg",
+      texture: "img/views/iq1.jpg",
       cameraTarget: { "x": -0.8, "y": 0, "z": -0.1 },
       upAngle:  0.59,
       downAngle:  0.41,
       points:
          [
             {
+               size: pointSize,
+               highlightSize: highlightPointSize,
                type: "link",
                texture: "img/icons/link.png",
                data: "Hall2",
@@ -518,6 +615,8 @@ var views = [
             },
 
             {
+               size: pointSize,
+               highlightSize: highlightPointSize,
                type: "link",
                texture: "img/icons/link.png",
                data: "IQ2",
@@ -530,13 +629,15 @@ var views = [
 
    { //IQ2
       name: "IQ2", //IQ-2
-      texture: "img/iq2.jpg",
+      texture: "img/views/iq2.jpg",
       cameraTarget: { "x": -0.1, "y": 0, "z": -0.6 },
       upAngle:  0.58,
       downAngle:  0.42,
       points:
          [
             {
+               size: pointSize,
+               highlightSize: highlightPointSize,
                type: "link",
                texture: "img/icons/link.png",
                data: "IQ1",
@@ -545,6 +646,8 @@ var views = [
             },
 
             {
+               size: pointSize,
+               highlightSize: highlightPointSize,
                type: "link",
                texture: "img/icons/link.png",
                data: "IQ3",
@@ -557,13 +660,15 @@ var views = [
 
    { //IQ3
       name: "IQ3", //IQ-3
-      texture: "img/iq3.jpg",
+      texture: "img/views/iq3.jpg",
       cameraTarget: { "x": -0.1, "y": 0, "z": -0.6 },
       upAngle:  0.58,
       downAngle:  0.42,
       points:
          [
             {
+               size: pointSize,
+               highlightSize: highlightPointSize,
                type: "link",
                texture: "img/icons/link.png",
                data: "IQ2",
@@ -577,13 +682,15 @@ var views = [
 
    { //Child
       name: "Child",
-      texture: "img/child1.jpg",
+      texture: "img/views/child1.jpg",
       cameraTarget: { "x": 1, "y": 0, "z": 0 },
       upAngle:  0.55,
       downAngle:  0.45,
       points:
          [
             {
+               size: pointSize,
+               highlightSize: highlightPointSize,
                type: "link",
                texture: "img/icons/link.png",
                data: "Hall4",

@@ -25,14 +25,14 @@ var mapFrameTexture;
 
 var mapPointGeometry, mapPointMaterial, mapPointMesh;
 var mapPointTexture;
-var mapMeshes = [];
 const loadManager = new THREE.LoadingManager();
 
 var audio = new Audio(); // Создаём новый элемент Audio
 audio.preload = true;
-audio.src = 'mus.mp3'; // Указываем путь к звуку "клика"
-//audio.autoplay = true;
+audio.src = 'mus.mp3';
+audio.autoplay = true;
 audio.loop = true;
+audio.volume = 0.05;
 
 if (WEBGL.isWebGLAvailable() === false) {
     document.body.appendChild(WEBGL.getWebGLErrorMessage());
@@ -44,7 +44,11 @@ animate();
 
 
 function configuringView() {
+    console.log("configuring toggle");
     $('#loading').fadeToggle();
+    if (mapInitialised) {
+        unInitMap();
+    }
     for (var i = 0; i < views.length; i++) {
         if (views[i].name == nextView) {
             currentView = views[i];
@@ -71,8 +75,9 @@ function configuringView() {
 
 function createPoints() {
 
-    pointGeometry = new THREE.PlaneGeometry(1, 1, 1, 1);
+    
     currentView.points.forEach(function (item, i, point) {
+        pointGeometry = new THREE.PlaneGeometry(point[i].size, point[i].size, 1, 1);
         pointTexture = new THREE.TextureLoader().load(point[i].texture);
         pointMaterial = new THREE.MeshBasicMaterial({ map: pointTexture, transparent: true });
         pointMesh = new THREE.Mesh(pointGeometry, pointMaterial);
@@ -81,7 +86,7 @@ function createPoints() {
         pointMesh.position.y = point[i].coords.y;
         pointMesh.position.z = point[i].coords.z;
         pointMesh.scale.y = -1;
-        pointMesh.userData = { URL: point[i].data, type: point[i].type };
+        pointMesh.userData = { URL: point[i].data, type: point[i].type, size: point[i].size, highlightSize: point[i].highlightSize };
         points.push(pointMesh);
     });
 
@@ -89,8 +94,8 @@ function createPoints() {
         scene.add(points[i]);
     });
 
-    pointGeometry = new THREE.PlaneGeometry(2.5, 2.5, 1, 1);
-    pointTexture = new THREE.TextureLoader().load("img/shorsik.png");
+    /*pointGeometry = new THREE.PlaneGeometry(2.5, 2.5, 1, 1);
+    pointTexture = new THREE.TextureLoader().load("img/design/shorsik.png");
     pointMaterial = new THREE.MeshBasicMaterial({ map: pointTexture, transparent: true });
     pointMesh = new THREE.Mesh(pointGeometry, pointMaterial);
     pointMesh.rotation.y = 0;
@@ -98,7 +103,7 @@ function createPoints() {
     pointMesh.position.y = 0;
     pointMesh.position.z = -6;
     pointMesh.scale.y = -1;
-    scene.add(pointMesh);
+    scene.add(pointMesh);*/
 }
 
 function panelClick(object) {
@@ -181,6 +186,7 @@ function render() {
 
 
 loadManager.onLoad = () => { //onload для загрузки текстур для сферы
+    console.log("load manager toggle");
     $('#loading').fadeToggle();
-    //console.log("Текстура сферы загружена загружены");
+    console.log("Текстура сферы загружена загружены");
   };
