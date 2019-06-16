@@ -39,7 +39,8 @@ if (WEBGL.isWebGLAvailable() === false) {
 }
 
 init();
-//$("#modal").iziModal();
+$("#modal").iziModal();
+
 animate();
 
 
@@ -148,14 +149,13 @@ function panelClick(object) {
             break;
         case "Help":
             $('#modal').iziModal('resetContent');
-            $('#modal').iziModal({
-                iframe: true,
-                iframeURL: "info/placeholder.pdf",
-                iframeHeight: 500,
-                iframeWidth: 200,
-            });
+
+            $('#modal').iziModal('setContent',
+                '<iframe height=500rem width=100% src="https://docs.google.com/document/d/1FFVFPXTpHskptcMf33xph5suLG-iczP30r68JSp1oNQ/preview"></iframe>'
+            );
+
             $('#modal').iziModal('setHeaderColor', "#ee5f00");
-            $('#modal').iziModal('setTitle', 'F.A.Q.');
+            $('#modal').iziModal('setTitle', 'Справка');
             $('#modal').iziModal('setTransitionIn', 'fadeInRight');
             $('#modal').iziModal('open');
             break;

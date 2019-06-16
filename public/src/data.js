@@ -26,9 +26,9 @@ var views = [
                type: "info",
                texture: "img/icons/info.png",
                dataTitle: "Окно информации",
-               data: "info/placeholder.pdf",
-               rotation: 0.9,
-               coords: { "x": 1, "y": 0, "z": 7 }
+               data: "https://docs.google.com/document/d/1FFVFPXTpHskptcMf33xph5suLG-iczP30r68JSp1oNQ/preview",
+               rotation: 1.1,
+               coords: { "x": 1, "y": 0, "z": 7.5 }
             },
 
             {
@@ -107,7 +107,7 @@ var views = [
                highlightSize: 3.1,
                type: "info",
                texture: "img/design/shorsik.png",
-               data: "info/Shorsik.pdf",
+               data: "https://drive.google.com/file/d/1Y4xCmaWoLwjVaSRJuySZ8jEpJ1Lxrrk0/preview",
                dataTitle: "ЧАВО",
                rotation: -0.1,
                coords: { "x": 3.9, "y": 0.7, "z": -6 }
@@ -881,5 +881,25 @@ var mapPoints = [
    {
       name: "IQ3",
       coords: { "x": 1.25, "y": -0.38, "z": 0 }
+   },
+
+   {
+      name: "Lingua1",
+      coords: { "x": -0.67, "y": 0.19, "z": 0 }
+   },
+
+   {
+      name: "Lingua2",
+      coords: { "x": -1.1, "y": 0.19, "z": 0 }
+   },
+
+   {
+      name: "Lingua3",
+      coords: { "x": -1.1, "y": 0.41, "z": 0 }
+   },
+
+   {
+      name: "LinguaRec",
+      coords: { "x": -0.67, "y": 0.41, "z": 0 }
    },
 ]
