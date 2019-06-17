@@ -1,5 +1,5 @@
-var pointSize = 0.9;
-var highlightPointSize = 1;
+var pointSize = 0.8;
+var highlightPointSize = 0.9;
 
 var views = [
    { //Hall1
@@ -95,6 +95,28 @@ var views = [
             {
                size: pointSize,
                highlightSize: highlightPointSize,
+               type: "info",
+               texture: "img/icons/info.png",
+               dataTitle: "Окно информации",
+               data: "https://docs.google.com/document/d/1FFVFPXTpHskptcMf33xph5suLG-iczP30r68JSp1oNQ/preview",
+               rotation: 1,
+               coords: { "x": -0.7, "y": -0.2, "z": 7.5 }
+            },
+
+            {
+               size: pointSize,
+               highlightSize: highlightPointSize,
+               type: "info",
+               texture: "img/icons/info.png",
+               dataTitle: "Окно информации",
+               data: "https://docs.google.com/document/d/1FFVFPXTpHskptcMf33xph5suLG-iczP30r68JSp1oNQ/preview",
+               rotation: 1,
+               coords: { "x": 1.5, "y": -2, "z": 7.5 }
+            },
+
+            {
+               size: pointSize,
+               highlightSize: highlightPointSize,
                type: "link",
                texture: "img/icons/link.png",
                data: "Hall4",
@@ -103,14 +125,25 @@ var views = [
             },
 
             {
-               size: 3,
-               highlightSize: 3.1,
+               size: 4,
+               highlightSize: 4.1,
                type: "info",
                texture: "img/design/shorsik.png",
                data: "https://drive.google.com/file/d/1Y4xCmaWoLwjVaSRJuySZ8jEpJ1Lxrrk0/preview",
                dataTitle: "ЧАВО",
+               rotation: -0.2,
+               coords: { "x": 4.3, "y": 1, "z": -6 }
+            },
+
+            {
+               size: pointSize,
+               highlightSize: highlightPointSize,
+               type: "info",
+               texture: "img/icons/info.png",
+               dataTitle: "Окно информации",
+               data: "https://docs.google.com/document/d/1FFVFPXTpHskptcMf33xph5suLG-iczP30r68JSp1oNQ/preview",
                rotation: -0.1,
-               coords: { "x": 3.9, "y": 0.7, "z": -6 }
+               coords: { "x": 1, "y": 2.7, "z": -8 }
             },
          ]
    },
@@ -152,6 +185,17 @@ var views = [
                rotation: 1.3,
                coords: { "x": 7.3, "y": -2.2, "z": 5 }
             },
+
+            {
+               size: pointSize,
+               highlightSize: highlightPointSize,
+               type: "info",
+               texture: "img/icons/info.png",
+               dataTitle: "Окно информации",
+               data: "https://docs.google.com/document/d/1FFVFPXTpHskptcMf33xph5suLG-iczP30r68JSp1oNQ/preview",
+               rotation: 1.3,
+               coords: { "x": 7.3, "y": -1.2, "z": 5 }
+            },
          ]
    },
 
@@ -181,6 +225,17 @@ var views = [
                data: "ODL1",
                rotation: -0.4,
                coords: { "x": 7.5, "y": -2.5, "z": -3.2 }
+            },
+
+            {
+               size: pointSize,
+               highlightSize: highlightPointSize,
+               type: "info",
+               texture: "img/icons/info.png",
+               dataTitle: "Окно информации",
+               data: "https://docs.google.com/document/d/1FFVFPXTpHskptcMf33xph5suLG-iczP30r68JSp1oNQ/preview",
+               rotation: -0.4,
+               coords: { "x": 7.5, "y": -1.5, "z": -3.2 }
             },
          ]
    },
@@ -218,7 +273,7 @@ var views = [
                highlightSize: highlightPointSize,
                type: "link",
                texture: "img/icons/link.png",
-               data: "ODL5",
+               data: "ODL6",
                rotation: 0.8,
                coords: { "x": -5, "y": -1.5, "z": 7 }
             },
@@ -233,6 +288,17 @@ var views = [
       downAngle:  0.42,
       points:
          [
+            {
+               size: 3.5,
+               highlightSize: 3.6,
+               type: "info",
+               texture: "img/design/shorsik.png",
+               dataTitle: "Окно информации",
+               data: "https://docs.google.com/document/d/1FFVFPXTpHskptcMf33xph5suLG-iczP30r68JSp1oNQ/preview",
+               rotation: 0,
+               coords: { "x": 0, "y": 0.3, "z": -7 }
+            },
+
             {
                size: pointSize,
                highlightSize: highlightPointSize,
@@ -292,6 +358,17 @@ var views = [
                rotation: 0.8,
                coords: { "x": -6, "y": -2.5, "z": 7 }
             },
+
+            {
+               size: pointSize,
+               highlightSize: highlightPointSize,
+               type: "info",
+               texture: "img/icons/info.png",
+               dataTitle: "Окно информации",
+               data: "https://docs.google.com/document/d/1FFVFPXTpHskptcMf33xph5suLG-iczP30r68JSp1oNQ/preview",
+               rotation: -0.7,
+               coords: { "x": 6, "y": 2.3, "z": 3 }
+            },
          ]
    },
 
@@ -348,29 +425,30 @@ var views = [
                highlightSize: highlightPointSize,
                type: "link",
                texture: "img/icons/link.png",
-               data: "ODL2",
-               rotation: 0.7,
-               coords: { "x": -7, "y": -3.5, "z": 4 }
-            },
-
-            {
-               size: pointSize,
-               highlightSize: highlightPointSize,
-               type: "link",
-               texture: "img/icons/link.png",
-               data: "ODL3",
-               rotation: 0.6,
-               coords: { "x": -9, "y": -2, "z": 1.5 }
-            },
-
-            {
-               size: pointSize,
-               highlightSize: highlightPointSize,
-               type: "link",
-               texture: "img/icons/link.png",
-               data: "ODL5",
+               data: "ODL6",
                rotation: -0.5,
-               coords: { "x": 9, "y": -1.5, "z": 0 }
+               coords: { "x": 7, "y": -3.5, "z": 1}
+            },
+
+            {
+               size: pointSize,
+               highlightSize: highlightPointSize,
+               type: "link",
+               texture: "img/icons/link.png",
+               data: "ODL4",
+               rotation: 0.9,
+               coords: { "x": -2, "y": -1.3, "z": 8 }
+            },
+
+            {
+               size: pointSize,
+               highlightSize: highlightPointSize,
+               type: "info",
+               texture: "img/icons/info.png",
+               dataTitle: "Окно информации",
+               data: "https://docs.google.com/document/d/1FFVFPXTpHskptcMf33xph5suLG-iczP30r68JSp1oNQ/preview",
+               rotation: -0.7,
+               coords: { "x": 4, "y": 2.3, "z": 6 }
             },
          ]
    },
@@ -389,18 +467,19 @@ var views = [
                type: "link",
                texture: "img/icons/link.png",
                data: "ODL2",
-               rotation: 0.7,
-               coords: { "x": -7, "y": -3.5, "z": 4 }
+               rotation: -0.2,
+               coords: { "x": 4, "y": -3.5, "z": -6 }
             },
 
             {
                size: pointSize,
                highlightSize: highlightPointSize,
-               type: "link",
-               texture: "img/icons/link.png",
-               data: "ODL3",
-               rotation: 0.6,
-               coords: { "x": -9, "y": -2, "z": 1.5 }
+               type: "info",
+               texture: "img/icons/info.png",
+               dataTitle: "Окно информации",
+               data: "https://docs.google.com/document/d/1FFVFPXTpHskptcMf33xph5suLG-iczP30r68JSp1oNQ/preview",
+               rotation: -0.2,
+               coords: { "x": 4, "y": -2.5, "z": -6 }
             },
 
             {
@@ -409,8 +488,138 @@ var views = [
                type: "link",
                texture: "img/icons/link.png",
                data: "ODL5",
-               rotation: -0.5,
-               coords: { "x": 9, "y": -1.5, "z": 0 }
+               rotation: 0.3,
+               coords: { "x": -6, "y": -3.5, "z": -3.5 }
+            },
+
+            {
+               size: pointSize,
+               highlightSize: highlightPointSize,
+               type: "link",
+               texture: "img/icons/link.png",
+               data: "ODL1",
+               rotation: 0.8,
+               coords: { "x": -4.4, "y": -1, "z": 7 }
+            },
+         ]
+   },
+
+   { //Lingua1
+      name: "Lingua1",
+      texture: "img/views/lingua1.jpg",
+      cameraTarget: { "x": -1, "y": 0, "z": 0 },
+      upAngle:  0.57,
+      downAngle:  0.43,
+      points:
+         [
+            {
+               size: pointSize,
+               highlightSize: highlightPointSize,
+               type: "link",
+               texture: "img/icons/link.png",
+               data: "Lingua2",
+               rotation: -0.49,
+               coords: { "x": 8, "y": -2.5, "z": 0 }
+            },
+
+            {
+               size: pointSize,
+               highlightSize: highlightPointSize,
+               type: "link",
+               texture: "img/icons/link.png",
+               data: "LinguaRec",
+               rotation: 1,
+               coords: { "x": 0, "y": -4.9, "z": 6.5 }
+            },
+         ]
+   },
+
+   { //Lingua2
+      name: "Lingua2",
+      texture: "img/views/lingua2.jpg",
+      cameraTarget: { "x": -1, "y": 0, "z": 0 },
+      upAngle:  0.585,
+      downAngle:  0.415,
+      points:
+         [
+            {
+               size: pointSize,
+               highlightSize: highlightPointSize,
+               type: "link",
+               texture: "img/icons/link.png",
+               data: "Lingua3",
+               rotation: -0.7,
+               coords: { "x": 5, "y": -3.2, "z": 4.5 }
+            },
+
+            {
+               size: pointSize,
+               highlightSize: highlightPointSize,
+               type: "link",
+               texture: "img/icons/link.png",
+               data: "Lingua1",
+               rotation: 0.8,
+               coords: { "x": -5.7, "y": -1.5, "z": 6.5 }
+            },
+         ]
+   },
+
+   { //Lingua3
+      name: "Lingua3",
+      texture: "img/views/lingua3.jpg",
+      cameraTarget: { "x": -1, "y": 0, "z": 0 },
+      upAngle:  0.555,
+      downAngle:  0.445,
+      points:
+         [
+            {
+               size: pointSize,
+               highlightSize: highlightPointSize,
+               type: "link",
+               texture: "img/icons/link.png",
+               data: "Lingua2",
+               rotation: -0.1,
+               coords: { "x": 2, "y": -3.3, "z": -7 }
+            },
+
+            {
+               size: pointSize,
+               highlightSize: highlightPointSize,
+               type: "link",
+               texture: "img/icons/link.png",
+               data: "LinguaRec",
+               rotation: 0.33,
+               coords: { "x": -8, "y": -2, "z": -4.1 }
+            },
+         ]
+   },
+
+   { //LinguaRec
+      name: "LinguaRec",
+      texture: "img/views/linguaRec.jpg",
+      cameraTarget: { "x": -1, "y": 0, "z": 0 },
+      upAngle:  0.557,
+      downAngle:  0.443,
+      points:
+         [
+            {
+               size: pointSize,
+               highlightSize: highlightPointSize,
+               type: "link",
+               texture: "img/icons/link.png",
+               data: "Lingua3",
+               rotation: -0.3,
+               coords: { "x": 6.2, "y": -0.5, "z": -5 }
+            },
+
+            {
+               size: pointSize,
+               highlightSize: highlightPointSize,
+               type: "link",
+               texture: "img/icons/link.png",
+               data: "Lingua1",
+               rotation: 0.2,
+               coords: { "x": -5.2, "y": -3, "z": -5.1 }
             },
          ]
    },
@@ -446,11 +655,54 @@ var views = [
             {
                size: pointSize,
                highlightSize: highlightPointSize,
+               type: "info",
+               texture: "img/icons/info.png",
+               dataTitle: "Окно информации",
+               data: "https://docs.google.com/document/d/1FFVFPXTpHskptcMf33xph5suLG-iczP30r68JSp1oNQ/preview",
+               rotation: -0.8,
+               coords: { "x": 5, "y": -2.3, "z": 7 }
+            },
+
+            {
+               size: pointSize,
+               highlightSize: highlightPointSize,
                type: "link",
                texture: "img/icons/link.png",
                data: "OHL1",
                rotation: -0.3,
                coords: { "x": 7, "y": -3, "z": -5.5 }
+            },
+
+            {
+               size: pointSize,
+               highlightSize: highlightPointSize,
+               type: "info",
+               texture: "img/icons/info.png",
+               dataTitle: "Окно информации",
+               data: "https://docs.google.com/document/d/1FFVFPXTpHskptcMf33xph5suLG-iczP30r68JSp1oNQ/preview",
+               rotation: -0.3,
+               coords: { "x": 7, "y": -2, "z": -5.5 }
+            },
+
+            {
+               size: pointSize,
+               highlightSize: highlightPointSize,
+               type: "link",
+               texture: "img/icons/link.png",
+               data: "Lingua1",
+               rotation: -0.45,
+               coords: { "x": 8, "y": -2.9, "z": -1 }
+            },
+
+            {
+               size: pointSize,
+               highlightSize: highlightPointSize,
+               type: "info",
+               texture: "img/icons/info.png",
+               dataTitle: "Окно информации",
+               data: "https://docs.google.com/document/d/1FFVFPXTpHskptcMf33xph5suLG-iczP30r68JSp1oNQ/preview",
+               rotation: -0.45,
+               coords: { "x": 8, "y": -1.9, "z": -1 }
             },
          ]
    },
@@ -598,7 +850,6 @@ var views = [
          ],
    },
 
-
    { //IQ1
       name: "IQ1", //IQ-1
       texture: "img/views/iq1.jpg",
@@ -620,6 +871,28 @@ var views = [
             {
                size: pointSize,
                highlightSize: highlightPointSize,
+               type: "info",
+               texture: "img/icons/info.png",
+               dataTitle: "Окно информации",
+               data: "https://docs.google.com/document/d/1FFVFPXTpHskptcMf33xph5suLG-iczP30r68JSp1oNQ/preview",
+               rotation: 0.2,
+               coords: { "x": -4.5, "y": 2.3, "z": -7 }
+            },
+
+            {
+               size: pointSize,
+               highlightSize: highlightPointSize,
+               type: "info",
+               texture: "img/icons/info.png",
+               dataTitle: "Окно информации",
+               data: "https://docs.google.com/document/d/1FFVFPXTpHskptcMf33xph5suLG-iczP30r68JSp1oNQ/preview",
+               rotation: 0.5,
+               coords: { "x": -7.5, "y": 0, "z": -2.5 }
+            },
+
+            {
+               size: pointSize,
+               highlightSize: highlightPointSize,
                type: "link",
                texture: "img/icons/link.png",
                data: "IQ2",
@@ -627,6 +900,40 @@ var views = [
                coords: { "x": 3, "y": -2.2, "z": 7 }
             },
 
+            {
+               size: pointSize,
+               highlightSize: highlightPointSize,
+               type: "info",
+               texture: "img/icons/info.png",
+               dataTitle: "Окно информации",
+               data: "https://docs.google.com/document/d/1FFVFPXTpHskptcMf33xph5suLG-iczP30r68JSp1oNQ/preview",
+               rotation: 1.3,
+               coords: { "x": 7.3, "y": 1.2, "z": 3 }
+            },
+            
+            {
+               size: pointSize,
+               highlightSize: highlightPointSize,
+               type: "info",
+               texture: "img/icons/info.png",
+               dataTitle: "Окно информации",
+               data: "https://docs.google.com/document/d/1FFVFPXTpHskptcMf33xph5suLG-iczP30r68JSp1oNQ/preview",
+               rotation: -0.5,
+               coords: { "x": 8, "y": 2.2, "z": -0.2 }
+            },
+
+            {
+               size: 4,
+               highlightSize: 4.1,
+               type: "info",
+               texture: "img/design/shorsik.png",
+               dataTitle: "Окно информации",
+               data: "https://docs.google.com/document/d/1FFVFPXTpHskptcMf33xph5suLG-iczP30r68JSp1oNQ/preview",
+               rotation: -0.37,
+               coords: { "x": 7, "y": 0.3, "z": -3.6 }
+            },
+
+            
          ],
    },
 
@@ -646,6 +953,29 @@ var views = [
                data: "IQ1",
                rotation: 0.1,
                coords: { "x": -2, "y": -2.3, "z": -7 }
+            },
+
+            {
+               size: pointSize,
+               highlightSize: highlightPointSize,
+               type: "info",
+               texture: "img/icons/info.png",
+               dataTitle: "Окно информации",
+               data: "https://docs.google.com/document/d/1FFVFPXTpHskptcMf33xph5suLG-iczP30r68JSp1oNQ/preview",
+               rotation: -0.5,
+               coords: { "x": 8, "y": 2.3, "z": 0 }
+            },
+
+
+            {
+               size: pointSize,
+               highlightSize: highlightPointSize,
+               type: "info",
+               texture: "img/icons/info.png",
+               dataTitle: "Окно информации",
+               data: "https://docs.google.com/document/d/1FFVFPXTpHskptcMf33xph5suLG-iczP30r68JSp1oNQ/preview",
+               rotation: 0.7,
+               coords: { "x": -7, "y": -0.3, "z": 4.3 }
             },
 
             {
@@ -679,7 +1009,27 @@ var views = [
                coords: { "x": -4, "y": -2.3, "z": -7 }
             },
 
+            {
+               size: pointSize,
+               highlightSize: highlightPointSize,
+               type: "info",
+               texture: "img/icons/info.png",
+               dataTitle: "Окно информации",
+               data: "https://docs.google.com/document/d/1FFVFPXTpHskptcMf33xph5suLG-iczP30r68JSp1oNQ/preview",
+               rotation: -0.4,
+               coords: { "x": 7, "y": 0, "z": -2.5 }
+            },
 
+            {
+               size: pointSize,
+               highlightSize: highlightPointSize,
+               type: "info",
+               texture: "img/icons/info.png",
+               dataTitle: "Окно информации",
+               data: "https://docs.google.com/document/d/1FFVFPXTpHskptcMf33xph5suLG-iczP30r68JSp1oNQ/preview",
+               rotation: -0.8,
+               coords: { "x": 4, "y": 0, "z": 6.5 }
+            },
          ],
    },
 
