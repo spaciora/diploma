@@ -39,7 +39,18 @@ var views = [
                data: "Hall2",
                rotation: 0.08,
                coords: { "x": -0.5, "y": -2.4, "z": -8.2 }
-            }
+            },
+
+            {
+               size: pointSize,
+               highlightSize: highlightPointSize,
+               type: "info",
+               texture: "img/icons/info.png",
+               dataTitle: "Режим работы",
+               data: "https://docs.google.com/document/d/11CM1vc1W5pAt1Kt5Lr61_b7l3ocs8TV4/preview",
+               rotation: -0.5,
+               coords: { "x": 7, "y": 1, "z": 1 }
+            },
          ]
    },
 
@@ -97,8 +108,8 @@ var views = [
                highlightSize: highlightPointSize,
                type: "info",
                texture: "img/icons/info.png",
-               dataTitle: "Окно информации",
-               data: "https://docs.google.com/document/d/1FFVFPXTpHskptcMf33xph5suLG-iczP30r68JSp1oNQ/preview",
+               dataTitle: "Библиослайдер",
+               data: "https://docs.google.com/document/d/1c38RxWNkxywaa0U_zcZP-teiF89TKcvH/preview",
                rotation: 1,
                coords: { "x": -0.7, "y": -0.2, "z": 7.5 }
             },
@@ -108,8 +119,8 @@ var views = [
                highlightSize: highlightPointSize,
                type: "info",
                texture: "img/icons/info.png",
-               dataTitle: "Окно информации",
-               data: "https://docs.google.com/document/d/1FFVFPXTpHskptcMf33xph5suLG-iczP30r68JSp1oNQ/preview",
+               dataTitle: "Станция самообслуживания",
+               data: "https://docs.google.com/document/d/1r3uqSHcq2Ew0gXQpx8a6IsFilVN5ccC4/preview",
                rotation: 1,
                coords: { "x": 1.5, "y": -2, "z": 7.5 }
             },
@@ -125,8 +136,8 @@ var views = [
             },
 
             {
-               size: 4,
-               highlightSize: 4.1,
+               size: 3,
+               highlightSize: 3.1,
                type: "info",
                texture: "img/design/shorsik.png",
                data: "https://drive.google.com/file/d/1Y4xCmaWoLwjVaSRJuySZ8jEpJ1Lxrrk0/preview",
@@ -140,8 +151,8 @@ var views = [
                highlightSize: highlightPointSize,
                type: "info",
                texture: "img/icons/info.png",
-               dataTitle: "Окно информации",
-               data: "https://docs.google.com/document/d/1FFVFPXTpHskptcMf33xph5suLG-iczP30r68JSp1oNQ/preview",
+               dataTitle: "Окно в мир",
+               data: "https://docs.google.com/document/d/1gNkSRu4mrpWBByQ0DmM3U-8KXxx4oubC/preview",
                rotation: -0.1,
                coords: { "x": 1, "y": 2.7, "z": -8 }
             },
@@ -191,8 +202,8 @@ var views = [
                highlightSize: highlightPointSize,
                type: "info",
                texture: "img/icons/info.png",
-               dataTitle: "Окно информации",
-               data: "https://docs.google.com/document/d/1FFVFPXTpHskptcMf33xph5suLG-iczP30r68JSp1oNQ/preview",
+               dataTitle: "IQ лаборатория",
+               data: "https://docs.google.com/document/d/14oEn_cD9RFejynTIwXHfeYwc873rE9Ri/preview",
                rotation: 1.3,
                coords: { "x": 7.3, "y": -1.2, "z": 5 }
             },
@@ -232,8 +243,8 @@ var views = [
                highlightSize: highlightPointSize,
                type: "info",
                texture: "img/icons/info.png",
-               dataTitle: "Окно информации",
-               data: "https://docs.google.com/document/d/1FFVFPXTpHskptcMf33xph5suLG-iczP30r68JSp1oNQ/preview",
+               dataTitle: "Отдел деловой литературы",
+               data: "https://docs.google.com/document/d/10-n3V0NfTlzTBCm6dStaL2-1RHbVr95U/preview",
                rotation: -0.4,
                coords: { "x": 7.5, "y": -1.5, "z": -3.2 }
             },
@@ -289,8 +300,8 @@ var views = [
       points:
          [
             {
-               size: 3.5,
-               highlightSize: 3.6,
+               size: 3,
+               highlightSize: 3.1,
                type: "info",
                texture: "img/design/shorsik.png",
                dataTitle: "Окно информации",
@@ -531,6 +542,17 @@ var views = [
                rotation: 1,
                coords: { "x": 0, "y": -4.9, "z": 6.5 }
             },
+
+            {
+               size: pointSize,
+               highlightSize: highlightPointSize,
+               type: "link",
+               texture: "img/icons/link.png",
+               data: "Hall4",
+               rotation: 0.49,
+               coords: { "x": -6, "y": -4, "z": 0 }
+            },
+            
          ]
    },
 
@@ -561,6 +583,17 @@ var views = [
                rotation: 0.8,
                coords: { "x": -5.7, "y": -1.5, "z": 6.5 }
             },
+
+            {
+               size: pointSize,
+               highlightSize: highlightPointSize,
+               type: "info",
+               texture: "img/icons/info.png",
+               dataTitle: "Топ настольных игр",
+               data: "https://docs.google.com/document/d/1u1uCtDByW9kEpR1ZNxlHvPSAYE1FvEHb/preview",
+               rotation: -0.3,
+               coords: { "x": 6, "y": 1.5, "z": -5 }
+            },
          ]
    },
 
@@ -590,6 +623,28 @@ var views = [
                data: "LinguaRec",
                rotation: 0.33,
                coords: { "x": -8, "y": -2, "z": -4.1 }
+            },
+
+            {
+               size: pointSize,
+               highlightSize: highlightPointSize,
+               type: "info",
+               texture: "img/icons/info.png",
+               dataTitle: "Топ настольных игр",
+               data: "https://docs.google.com/document/d/1u1uCtDByW9kEpR1ZNxlHvPSAYE1FvEHb/preview",
+               rotation: -0.6,
+               coords: { "x": 6, "y": 1.5, "z": 1 }
+            },
+
+            {
+               size: pointSize,
+               highlightSize: highlightPointSize,
+               type: "info",
+               texture: "img/icons/info.png",
+               dataTitle: "Топ книг Лингволаборатории",
+               data: "https://docs.google.com/document/d/1gh3KCUA7tr3dCgAyrgTpjTdGR4apdWNQ/preview",
+               rotation: 0.25,
+               coords: { "x": -5, "y": 2, "z": -4.1 }
             },
          ]
    },
@@ -657,7 +712,7 @@ var views = [
                highlightSize: highlightPointSize,
                type: "info",
                texture: "img/icons/info.png",
-               dataTitle: "Окно информации",
+               dataTitle: "Игровая",
                data: "https://docs.google.com/document/d/1FFVFPXTpHskptcMf33xph5suLG-iczP30r68JSp1oNQ/preview",
                rotation: -0.8,
                coords: { "x": 5, "y": -2.3, "z": 7 }
@@ -678,8 +733,8 @@ var views = [
                highlightSize: highlightPointSize,
                type: "info",
                texture: "img/icons/info.png",
-               dataTitle: "Окно информации",
-               data: "https://docs.google.com/document/d/1FFVFPXTpHskptcMf33xph5suLG-iczP30r68JSp1oNQ/preview",
+               dataTitle: "Отдел художественной литературы",
+               data: "https://docs.google.com/document/d/124BUSHuyofufIWg88lt0D_KVwYZGkp7k/preview",
                rotation: -0.3,
                coords: { "x": 7, "y": -2, "z": -5.5 }
             },
@@ -699,8 +754,8 @@ var views = [
                highlightSize: highlightPointSize,
                type: "info",
                texture: "img/icons/info.png",
-               dataTitle: "Окно информации",
-               data: "https://docs.google.com/document/d/1FFVFPXTpHskptcMf33xph5suLG-iczP30r68JSp1oNQ/preview",
+               dataTitle: "Лингволаборатория",
+               data: "https://docs.google.com/document/d/1Uf4gLG-SqfsDFkMuE5p7jsBGUVQj2kQY/preview",
                rotation: -0.45,
                coords: { "x": 8, "y": -1.9, "z": -1 }
             },
@@ -795,6 +850,17 @@ var views = [
                coords: { "x": 7, "y": -3, "z": -4 }
             },
 
+            {
+               size: pointSize,
+               highlightSize: highlightPointSize,
+               type: "info",
+               texture: "img/icons/info.png",
+               dataTitle: "Топ книг ОХЛ",
+               data: "https://docs.google.com/document/d/1igVcZKs9NJSU8H6SDCglQ-rw-QqbaMZK/preview",
+               rotation: 1,
+               coords: { "x": 0, "y": 1.5, "z": 7 }
+            },
+
          ],
    },
 
@@ -847,6 +913,17 @@ var views = [
                coords: { "x": -7, "y": -2, "z": 3.5 }
             },
 
+            {
+               size: pointSize,
+               highlightSize: highlightPointSize,
+               type: "info",
+               texture: "img/icons/info.png",
+               dataTitle: "Фонд подростковой литературы",
+               data: "https://docs.google.com/document/d/1FFVFPXTpHskptcMf33xph5suLG-iczP30r68JSp1oNQ/preview",
+               rotation: -0.7,
+               coords: { "x": 5, "y": 1.5, "z": 6 }
+            },
+
          ],
    },
 
@@ -873,8 +950,8 @@ var views = [
                highlightSize: highlightPointSize,
                type: "info",
                texture: "img/icons/info.png",
-               dataTitle: "Окно информации",
-               data: "https://docs.google.com/document/d/1FFVFPXTpHskptcMf33xph5suLG-iczP30r68JSp1oNQ/preview",
+               dataTitle: "Топ книг IQ-лаборатории",
+               data: "https://docs.google.com/document/d/1p_QuzJ9s7QUU1ma737X_MbWhxbl1IQup/preview",
                rotation: 0.2,
                coords: { "x": -4.5, "y": 2.3, "z": -7 }
             },
@@ -884,8 +961,8 @@ var views = [
                highlightSize: highlightPointSize,
                type: "info",
                texture: "img/icons/info.png",
-               dataTitle: "Окно информации",
-               data: "https://docs.google.com/document/d/1FFVFPXTpHskptcMf33xph5suLG-iczP30r68JSp1oNQ/preview",
+               dataTitle: "Фонд программного обеспечения",
+               data: "https://docs.google.com/document/d/18v0i2aAVIrCfs5e8QFbvbOFINq_yW-sb/preview",
                rotation: 0.5,
                coords: { "x": -7.5, "y": 0, "z": -2.5 }
             },
@@ -905,8 +982,8 @@ var views = [
                highlightSize: highlightPointSize,
                type: "info",
                texture: "img/icons/info.png",
-               dataTitle: "Окно информации",
-               data: "https://docs.google.com/document/d/1FFVFPXTpHskptcMf33xph5suLG-iczP30r68JSp1oNQ/preview",
+               dataTitle: "Фонд периодических изданий",
+               data: "https://docs.google.com/document/d/1XxMwRAprgWAhlCy6wbVIyTy8X1fifyvk/preview",
                rotation: 1.3,
                coords: { "x": 7.3, "y": 1.2, "z": 3 }
             },
@@ -916,15 +993,15 @@ var views = [
                highlightSize: highlightPointSize,
                type: "info",
                texture: "img/icons/info.png",
-               dataTitle: "Окно информации",
+               dataTitle: "Фонд IQ-лаборатории",
                data: "https://docs.google.com/document/d/1FFVFPXTpHskptcMf33xph5suLG-iczP30r68JSp1oNQ/preview",
                rotation: -0.5,
                coords: { "x": 8, "y": 2.2, "z": -0.2 }
             },
 
             {
-               size: 4,
-               highlightSize: 4.1,
+               size: 3,
+               highlightSize: 3.1,
                type: "info",
                texture: "img/design/shorsik.png",
                dataTitle: "Окно информации",
@@ -960,7 +1037,7 @@ var views = [
                highlightSize: highlightPointSize,
                type: "info",
                texture: "img/icons/info.png",
-               dataTitle: "Окно информации",
+               dataTitle: "Фонд IQ-лаборатории",
                data: "https://docs.google.com/document/d/1FFVFPXTpHskptcMf33xph5suLG-iczP30r68JSp1oNQ/preview",
                rotation: -0.5,
                coords: { "x": 8, "y": 2.3, "z": 0 }
@@ -972,8 +1049,8 @@ var views = [
                highlightSize: highlightPointSize,
                type: "info",
                texture: "img/icons/info.png",
-               dataTitle: "Окно информации",
-               data: "https://docs.google.com/document/d/1FFVFPXTpHskptcMf33xph5suLG-iczP30r68JSp1oNQ/preview",
+               dataTitle: "Фонд программного обеспечения",
+               data: "https://docs.google.com/document/d/18v0i2aAVIrCfs5e8QFbvbOFINq_yW-sb/preview",
                rotation: 0.7,
                coords: { "x": -7, "y": -0.3, "z": 4.3 }
             },
@@ -986,6 +1063,17 @@ var views = [
                data: "IQ3",
                rotation: 1.1,
                coords: { "x": 1.5, "y": -2.5, "z": 8 }
+            },
+
+            {
+               size: pointSize,
+               highlightSize: highlightPointSize,
+               type: "info",
+               texture: "img/icons/info.png",
+               dataTitle: "Фонд периодических изданий",
+               data: "https://docs.google.com/document/d/1XxMwRAprgWAhlCy6wbVIyTy8X1fifyvk/preview",
+               rotation: -0.15,
+               coords: { "x": 3, "y": 1.2, "z": -7 }
             },
 
          ],
@@ -1025,10 +1113,21 @@ var views = [
                highlightSize: highlightPointSize,
                type: "info",
                texture: "img/icons/info.png",
-               dataTitle: "Окно информации",
-               data: "https://docs.google.com/document/d/1FFVFPXTpHskptcMf33xph5suLG-iczP30r68JSp1oNQ/preview",
+               dataTitle: "Прохода нет!",
+               data: "https://docs.google.com/document/d/1pCCB1yWd2_oa3_wcl3FuQ2XN0QaI-bJQ/preview",
                rotation: -0.8,
                coords: { "x": 4, "y": 0, "z": 6.5 }
+            },
+
+            {
+               size: pointSize,
+               highlightSize: highlightPointSize,
+               type: "info",
+               texture: "img/icons/info.png",
+               dataTitle: "Окно информации",
+               data: "https://docs.google.com/document/d/1FFVFPXTpHskptcMf33xph5suLG-iczP30r68JSp1oNQ/preview",
+               rotation: 1,
+               coords: { "x": 0, "y": 1.5, "z": 7 }
             },
          ],
    },

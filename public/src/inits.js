@@ -48,7 +48,7 @@ function initControlPanel() {
     otherCamera.position.y = 1.8;
 
     if (window.innerHeight > window.innerWidth) {
-        otherCamera.position.z = 7.5;
+        otherCamera.position.z = 8;
         otherCamera.position.y = 2.5;
     }
 
@@ -83,7 +83,7 @@ function preInitMap() {
     anotherCamera.position.y = 0.98;
 
     if (window.innerHeight > window.innerWidth) {
-        anotherCamera.position.z = 7.5;
+        anotherCamera.position.z = 8;
         anotherCamera.position.y = 1.68;
     }
 }
