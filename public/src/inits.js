@@ -101,7 +101,7 @@ function initMap() {
     anotherScene.add(spriteMesh);
 
     spriteGeometry = new THREE.PlaneGeometry(3.3, 1.1, 1, 1);
-    spriteTexture = new THREE.TextureLoader().load("img/design/map.png");
+    spriteTexture = new THREE.TextureLoader().load("img/design/map1.png");
     spriteMaterial = new THREE.MeshBasicMaterial({ map: spriteTexture, transparent: true });
     spriteMesh = new THREE.Mesh(spriteGeometry, spriteMaterial);
     spriteMesh.scale.y = -1;

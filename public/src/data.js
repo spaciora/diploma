@@ -71,17 +71,6 @@ var views = [
                rotation: 0.6,
                coords: { "x": -8, "y": -1.5, "z": 0.9 }
             },
-
-            {
-               size: pointSize,
-               highlightSize: highlightPointSize,
-               type: "info",
-               texture: "img/icons/info.png",
-               data: "info/placeholder.pdf",
-               dataTitle: "Окно информации",
-               rotation: 0.9,
-               coords: { "x": -0.7, "y": 0, "z": 7 }
-            }
          ]
    },
 
@@ -136,14 +125,14 @@ var views = [
             },
 
             {
-               size: 3,
-               highlightSize: 3.1,
+               size: 2.7,
+               highlightSize: 2.8,
                type: "info",
                texture: "img/design/shorsik.png",
-               data: "https://drive.google.com/file/d/1Y4xCmaWoLwjVaSRJuySZ8jEpJ1Lxrrk0/preview",
+               data: "https://docs.google.com/document/d/1wbze8-pR3H8vl6en-xsF5IIwsoAA8nim/preview",
                dataTitle: "Отдел регистрации и учета читателей",
                rotation: -0.2,
-               coords: { "x": 4.3, "y": 1, "z": -6 }
+               coords: { "x":4, "y": 0, "z": -6 }
             },
 
             {
@@ -155,6 +144,17 @@ var views = [
                data: "https://docs.google.com/document/d/1gNkSRu4mrpWBByQ0DmM3U-8KXxx4oubC/preview",
                rotation: -0.1,
                coords: { "x": 1, "y": 2.7, "z": -8 }
+            },
+
+            {
+               size: pointSize,
+               highlightSize: highlightPointSize,
+               type: "info",
+               texture: "img/icons/info.png",
+               dataTitle: "Перечень платных услуг",
+               data: "https://docs.google.com/document/d/1imdREiPAranO3m3wojhs6DVENWK8DJEl/preview",
+               rotation: 0.1,
+               coords: { "x": -1, "y": 0.3, "z": -8 }
             },
          ]
    },
@@ -299,16 +299,6 @@ var views = [
       downAngle:  0.42,
       points:
          [
-            {
-               size: 3,
-               highlightSize: 3.1,
-               type: "info",
-               texture: "img/design/shorsik.png",
-               dataTitle: "Окно информации",
-               data: "https://docs.google.com/document/d/1FFVFPXTpHskptcMf33xph5suLG-iczP30r68JSp1oNQ/preview",
-               rotation: 0,
-               coords: { "x": 0, "y": 0.3, "z": -7 }
-            },
 
             {
                size: pointSize,
@@ -375,8 +365,8 @@ var views = [
                highlightSize: highlightPointSize,
                type: "info",
                texture: "img/icons/info.png",
-               dataTitle: "Окно информации",
-               data: "https://docs.google.com/document/d/1FFVFPXTpHskptcMf33xph5suLG-iczP30r68JSp1oNQ/preview",
+               dataTitle: "Топ книг ОДЛ",
+               data: "https://docs.google.com/document/d/14sVjn9hxWWKuSnJ5oGMDKBzh30GUR1ta/preview",
                rotation: -0.7,
                coords: { "x": 6, "y": 2.3, "z": 3 }
             },
@@ -456,8 +446,8 @@ var views = [
                highlightSize: highlightPointSize,
                type: "info",
                texture: "img/icons/info.png",
-               dataTitle: "Окно информации",
-               data: "https://docs.google.com/document/d/1FFVFPXTpHskptcMf33xph5suLG-iczP30r68JSp1oNQ/preview",
+               dataTitle: "Фонд отдела деловой литературы",
+               data: "https://docs.google.com/document/d/1xm8n587LMRPG62tS97mtYd8YXnIxVOlG/preview",
                rotation: -0.7,
                coords: { "x": 4, "y": 2.3, "z": 6 }
             },
@@ -487,8 +477,8 @@ var views = [
                highlightSize: highlightPointSize,
                type: "info",
                texture: "img/icons/info.png",
-               dataTitle: "Окно информации",
-               data: "https://docs.google.com/document/d/1FFVFPXTpHskptcMf33xph5suLG-iczP30r68JSp1oNQ/preview",
+               dataTitle: "Комната для индивидуальных занятий",
+               data: "https://docs.google.com/document/d/11FsuTyo2qLA5LRNGBEoHQUFLW4dtpAe3/preview",
                rotation: -0.2,
                coords: { "x": 4, "y": -2.5, "z": -6 }
             },
@@ -1000,8 +990,8 @@ var views = [
             },
 
             {
-               size: 3,
-               highlightSize: 3.1,
+               size: 2.7,
+               highlightSize: 2.8,
                type: "info",
                texture: "img/design/shorsik.png",
                dataTitle: "Кафедра выдачи литературы",
@@ -1102,8 +1092,8 @@ var views = [
                highlightSize: highlightPointSize,
                type: "info",
                texture: "img/icons/info.png",
-               dataTitle: "Окно информации",
-               data: "https://docs.google.com/document/d/1FFVFPXTpHskptcMf33xph5suLG-iczP30r68JSp1oNQ/preview",
+               dataTitle: "Компьютер для пользователей до 14 лет",
+               data: "https://docs.google.com/document/d/1m-Y97pD7ohvDqgaEag2C5SsF9gmBEzgF/preview",
                rotation: -0.4,
                coords: { "x": 7, "y": 0, "z": -2.5 }
             },
@@ -1124,8 +1114,8 @@ var views = [
                highlightSize: highlightPointSize,
                type: "info",
                texture: "img/icons/info.png",
-               dataTitle: "Окно информации",
-               data: "https://docs.google.com/document/d/1FFVFPXTpHskptcMf33xph5suLG-iczP30r68JSp1oNQ/preview",
+               dataTitle: "Занимательная наука",
+               data: "https://docs.google.com/document/d/1xjyJPVVdRBFy2cLPxw4ZUHNc-crc7Trl/preview",
                rotation: 1,
                coords: { "x": 0, "y": 1.5, "z": 7 }
             },
@@ -1157,7 +1147,7 @@ var panelIcons = [
    
    {
       name: "Sound",
-      texture: "img/icons/sound-on.png",
+      texture: "img/icons/sound-off.png",
       data: "someData",
       coords: { "x": -1.8, "y": 0, "z": 0 }
    },

@@ -6,7 +6,7 @@ var mouse = new THREE.Vector2(0, 0), INTERSECTED;
 var CSSRENDERER;
 var PageLoaded = false;
 var mapInitialised = false
-var soundState = "img/icons/sound-off.png";
+var soundState = "img/icons/sound-on.png";
 
 var points = [], buttons = [], mapViews = [];
 
@@ -28,11 +28,13 @@ var mapPointTexture;
 const loadManager = new THREE.LoadingManager();
 
 var audio = new Audio(); // Создаём новый элемент Audio
-audio.preload = true;
 audio.src = 'mus.mp3';
-audio.autoplay = true;
+audio.preload = true;
+//audio.load();
+//audio.autoplay = true;
 audio.loop = true;
 audio.volume = 0.05;
+
 
 if (WEBGL.isWebGLAvailable() === false) {
     document.body.appendChild(WEBGL.getWebGLErrorMessage());
@@ -58,6 +60,8 @@ function configuringView() {
     }
 
     camera.position.set(currentView.cameraTarget.x, currentView.cameraTarget.y, currentView.cameraTarget.z);
+    camera.fov = 75;
+    camera.updateProjectionMatrix();
 
     CONTROLS.minPolarAngle = Math.PI * currentView.downAngle;
     CONTROLS.maxPolarAngle = Math.PI * currentView.upAngle;
@@ -182,10 +186,12 @@ function render() {
     }
 }
 
-
-
 loadManager.onLoad = () => { //onload для загрузки текстур для сферы
     console.log("load manager toggle");
     $('#loading').fadeToggle();
-    console.log("Текстура сферы загружена загружены");
+    console.log("Текстура сферы загружена");
+};
+
+window.onload = function () {
+    //audio.play();
 };
