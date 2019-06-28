@@ -25,8 +25,8 @@ var views = [
                highlightSize: highlightPointSize,
                type: "info",
                texture: "img/icons/info.png",
-               dataTitle: "Окно информации",
-               data: "https://docs.google.com/document/d/1FFVFPXTpHskptcMf33xph5suLG-iczP30r68JSp1oNQ/preview",
+               dataTitle: "Буккроссинг «Найди свою книгу!»",
+               data: "https://docs.google.com/document/d/1zpQkVq4aqdGQ-74tgocxMFN-ya6ubpGY/preview",
                rotation: 1.1,
                coords: { "x": 1, "y": 0, "z": 7.5 }
             },
@@ -141,7 +141,7 @@ var views = [
                type: "info",
                texture: "img/design/shorsik.png",
                data: "https://drive.google.com/file/d/1Y4xCmaWoLwjVaSRJuySZ8jEpJ1Lxrrk0/preview",
-               dataTitle: "ЧАВО",
+               dataTitle: "Отдел регистрации и учета читателей",
                rotation: -0.2,
                coords: { "x": 4.3, "y": 1, "z": -6 }
             },
@@ -477,7 +477,7 @@ var views = [
                highlightSize: highlightPointSize,
                type: "link",
                texture: "img/icons/link.png",
-               data: "ODL2",
+               data: "Conf",
                rotation: -0.2,
                coords: { "x": 4, "y": -3.5, "z": -6 }
             },
@@ -592,7 +592,7 @@ var views = [
                dataTitle: "Топ настольных игр",
                data: "https://docs.google.com/document/d/1u1uCtDByW9kEpR1ZNxlHvPSAYE1FvEHb/preview",
                rotation: -0.3,
-               coords: { "x": 6, "y": 1.5, "z": -5 }
+               coords: { "x": 6, "y": 0.5, "z": -5 }
             },
          ]
    },
@@ -633,7 +633,7 @@ var views = [
                dataTitle: "Топ настольных игр",
                data: "https://docs.google.com/document/d/1u1uCtDByW9kEpR1ZNxlHvPSAYE1FvEHb/preview",
                rotation: -0.6,
-               coords: { "x": 6, "y": 1.5, "z": 1 }
+               coords: { "x": 6, "y": 0.5, "z": 1 }
             },
 
             {
@@ -918,8 +918,8 @@ var views = [
                highlightSize: highlightPointSize,
                type: "info",
                texture: "img/icons/info.png",
-               dataTitle: "Фонд подростковой литературы",
-               data: "https://docs.google.com/document/d/1FFVFPXTpHskptcMf33xph5suLG-iczP30r68JSp1oNQ/preview",
+               dataTitle: "Фонд литературы для юношества",
+               data: "https://docs.google.com/document/d/14JumfCQOqBpvupxE_zgGKQ6fOVW8EPlz/preview",
                rotation: -0.7,
                coords: { "x": 5, "y": 1.5, "z": 6 }
             },
@@ -993,8 +993,8 @@ var views = [
                highlightSize: highlightPointSize,
                type: "info",
                texture: "img/icons/info.png",
-               dataTitle: "Фонд IQ-лаборатории",
-               data: "https://docs.google.com/document/d/1FFVFPXTpHskptcMf33xph5suLG-iczP30r68JSp1oNQ/preview",
+               dataTitle: "Естественные науки",
+               data: "https://docs.google.com/document/d/1dVXn4tljFZV2XKafxUfNchV_K-EFQ18X/preview",
                rotation: -0.5,
                coords: { "x": 8, "y": 2.2, "z": -0.2 }
             },
@@ -1004,8 +1004,8 @@ var views = [
                highlightSize: 3.1,
                type: "info",
                texture: "img/design/shorsik.png",
-               dataTitle: "Окно информации",
-               data: "https://docs.google.com/document/d/1FFVFPXTpHskptcMf33xph5suLG-iczP30r68JSp1oNQ/preview",
+               dataTitle: "Кафедра выдачи литературы",
+               data: "https://docs.google.com/document/d/1gwKoTBveAZ8B6uCeAwoyc2_qORfK7P9L/preview",
                rotation: -0.37,
                coords: { "x": 7, "y": 0.3, "z": -3.6 }
             },
@@ -1037,8 +1037,8 @@ var views = [
                highlightSize: highlightPointSize,
                type: "info",
                texture: "img/icons/info.png",
-               dataTitle: "Фонд IQ-лаборатории",
-               data: "https://docs.google.com/document/d/1FFVFPXTpHskptcMf33xph5suLG-iczP30r68JSp1oNQ/preview",
+               dataTitle: "Техника и технические науки в целом",
+               data: "https://docs.google.com/document/d/176KVH0IIJkkG6dL_rSUHJ5u692zGWUwe/preview",
                rotation: -0.5,
                coords: { "x": 8, "y": 2.3, "z": 0 }
             },
