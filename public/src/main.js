@@ -27,10 +27,9 @@ var mapPointGeometry, mapPointMaterial, mapPointMesh;
 var mapPointTexture;
 const loadManager = new THREE.LoadingManager();
 
-var audio = new Audio(); // Создаём новый элемент Audio
+var audio = new Audio();
 audio.src = 'mus.mp3';
 audio.preload = true;
-//audio.load();
 //audio.autoplay = true;
 audio.loop = true;
 audio.volume = 0.05;
@@ -155,7 +154,7 @@ function panelClick(object) {
             $('#modal').iziModal('resetContent');
 
             $('#modal').iziModal('setContent',
-                '<iframe height=500rem width=100% src="https://docs.google.com/document/d/1FFVFPXTpHskptcMf33xph5suLG-iczP30r68JSp1oNQ/preview"></iframe>'
+                '<iframe height=500rem width=100% src="https://docs.google.com/document/d/1Y4xCmaWoLwjVaSRJuySZ8jEpJ1Lxrrk0/preview"></iframe>'
             );
 
             $('#modal').iziModal('setHeaderColor', "#ee5f00");

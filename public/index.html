@@ -9,11 +9,12 @@
 			margin: 0px;
 			overflow: hidden;
 
-			background: url(img/libW1.jpg) no-repeat;
+			background-image: url(img/libW.jpg);
 
 			background-attachment: fixed;
 			background-size: cover;
-			background-position-y: 50%;
+			
+			background-position-y: center;
 		}
 
 		canvas {
@@ -51,9 +52,10 @@
 	</div>
 
 	<script>
-		/*if (window.innerHeight > window.innerWidth) {
-			$('body').attr('background', 'url(img/libH.jpg)');
-		}*/
+		if (window.innerHeight > window.innerWidth) {
+			$('body').css('background-image', 'url(img/libH.jpg)');
+			//console.log("higher");
+		} 
 	</script>
 
 	<div id="footer"><b>Виртуальная экскурсия по ККМБ</b></div>
