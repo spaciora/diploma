@@ -54,10 +54,10 @@ function initControlPanel() {
 
     spriteGeometry = new THREE.PlaneGeometry(4, 0.43, 1, 1);
     spriteTexture = new THREE.TextureLoader().load("img/design/panelFrame.png");
-    spriteMaterial = new THREE.MeshBasicMaterial({ map: spriteTexture, transparent: true });
+    spriteMaterial = new THREE.MeshBasicMaterial({ map: spriteTexture, transparent: true});
     spriteMesh = new THREE.Mesh(spriteGeometry, spriteMaterial);
     spriteMesh.rotation = 0.1 * Math.PI;
-    spriteMesh.scale.y = -1;
+    //spriteMesh.scale.y = -1;
     //spriteMesh.scale.x = -1;
     spriteMesh.position.y = -0.05;
     otherScene.add(spriteMesh);
@@ -69,6 +69,7 @@ function initControlPanel() {
         spriteMesh = new THREE.Mesh(spriteGeometry, spriteMaterial);
         spriteMesh.position.x = panelIcon[i].coords.x;
         spriteMesh.userData = { type: panelIcon[i].name };
+        spriteMesh.scale.y = -1;
         //console.log(spriteMesh.userData);
         otherScene.add(spriteMesh);
         buttons.push(spriteMesh);
@@ -93,18 +94,18 @@ function initMap() {
 
     spriteGeometry = new THREE.PlaneGeometry(3.4, 1.5, 1, 1);
     spriteTexture = new THREE.TextureLoader().load("img/design/mapFrame.png");
-    spriteMaterial = new THREE.MeshBasicMaterial({ map: spriteTexture, transparent: true, color: 0xffffff });
+    spriteMaterial = new THREE.MeshBasicMaterial({ map: spriteTexture, transparent: true });
     spriteMesh = new THREE.Mesh(spriteGeometry, spriteMaterial);
-    spriteMesh.scale.y = -1;
+    //spriteMesh.scale.y = -1;
     spriteMesh.position.x = -0.3;
     spriteMesh.position.y = 0.095;
     anotherScene.add(spriteMesh);
 
     spriteGeometry = new THREE.PlaneGeometry(3.3, 1.1, 1, 1);
     spriteTexture = new THREE.TextureLoader().load("img/design/map1.png");
-    spriteMaterial = new THREE.MeshBasicMaterial({ map: spriteTexture, transparent: true });
+    spriteMaterial = new THREE.MeshBasicMaterial({ map: spriteTexture, transparent: true});
     spriteMesh = new THREE.Mesh(spriteGeometry, spriteMaterial);
-    spriteMesh.scale.y = -1;
+    //spriteMesh.scale.y = -1;
     spriteMesh.position.x = -0.3;
     spriteMesh.position.y = 0.18;
     anotherScene.add(spriteMesh);
@@ -117,7 +118,7 @@ function initMap() {
         spriteMesh.position.x = mapPoint[i].coords.x - 0.3;
         spriteMesh.position.y = mapPoint[i].coords.y + 0.18;
         spriteMesh.position.z = mapPoint[i].coords.z;
-        spriteMesh.scale.y = -1;
+        //spriteMesh.scale.y = -1;
         spriteMesh.userData = { name: mapPoint[i].name };
 
         if (currentView.name == spriteMesh.userData.name) {

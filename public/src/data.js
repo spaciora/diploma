@@ -108,7 +108,7 @@ var views = [
                highlightSize: highlightPointSize,
                type: "info",
                texture: "img/icons/info.png",
-               dataTitle: "Станция самообслуживания",
+               dataTitle: "Станция автоматической книговыдачи",
                data: "https://docs.google.com/document/d/1r3uqSHcq2Ew0gXQpx8a6IsFilVN5ccC4/preview",
                rotation: 1,
                coords: { "x": 1.5, "y": -2, "z": 7.5 }
@@ -703,7 +703,7 @@ var views = [
                type: "info",
                texture: "img/icons/info.png",
                dataTitle: "Игровая",
-               data: "https://docs.google.com/document/d/1FFVFPXTpHskptcMf33xph5suLG-iczP30r68JSp1oNQ/preview",
+               data: "https://docs.google.com/document/d/1NKnmM9F5oJ9hp64XurB9aHbmwq_wm6GB/preview",
                rotation: -0.8,
                coords: { "x": 5, "y": -2.3, "z": 7 }
             },

@@ -90,7 +90,7 @@ function createPoints() {
         pointMesh.position.x = point[i].coords.x;
         pointMesh.position.y = point[i].coords.y;
         pointMesh.position.z = point[i].coords.z;
-        pointMesh.scale.y = -1;
+        //pointMesh.scale.y = -1;
         if (point[i].type == "info") {
             pointMesh.userData = { title: point[i].dataTitle, URL: point[i].data, type: point[i].type, size: point[i].size, highlightSize: point[i].highlightSize };
         } else {
