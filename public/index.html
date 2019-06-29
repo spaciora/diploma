@@ -6,15 +6,15 @@
 	<title>Виртуальная экскурсия по ККМБ</title>
 	<style>
 		body {
-			margin: 0px;
 			overflow: hidden;
 
 			background-image: url(img/libW.jpg);
 
 			background-attachment: fixed;
-			background-size: 100%;
+			background-size: cover;
 			
 			background-position-y: center;
+			background-position-x: center;
 		}
 
 		canvas {
@@ -54,7 +54,6 @@
 	<script>
 		if (window.innerHeight > window.innerWidth) {
 			$('body').css('background-image', 'url(img/libH.jpg)');
-			$('body').css('background-size', '150%');
 			//console.log("higher");
 		} 
 	</script>
