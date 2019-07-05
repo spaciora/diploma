@@ -154,7 +154,7 @@ function panelClick(object) {
             $('#modal').iziModal('resetContent');
 
             $('#modal').iziModal('setContent',
-                '<iframe height=500rem width=100% src="https://docs.google.com/document/d/1Y4xCmaWoLwjVaSRJuySZ8jEpJ1Lxrrk0/preview"></iframe>'
+                '<iframe height=500rem width=100% src="https://docs.google.com/document/d/1uP52QWKDWv0CcxQkEGaZNMxSM3zxPcAf/preview"></iframe>'
             );
 
             $('#modal').iziModal('setHeaderColor', "#ee5f00");
