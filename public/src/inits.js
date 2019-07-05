@@ -7,7 +7,8 @@ function init() {
     scene = new THREE.Scene();
     camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1100); //fov, aspect, near, far
     raycaster = new THREE.Raycaster();
-    scene.add(new THREE.AxesHelper(20));
+
+    //scene.add(new THREE.AxesHelper(20));
 
     initSphere(); // Инициализация сферы и первого вида
     preInitMap(); // Инициализация сцены карты без ее показа
@@ -47,16 +48,16 @@ function initControlPanel() {
     otherCamera.position.y = 1.8;
 
     if (window.innerHeight > window.innerWidth) {
-        otherCamera.position.z = 7;
-        otherCamera.position.y = -2.5;
+        otherCamera.position.z = 8;
+        otherCamera.position.y = 2.5;
     }
 
     spriteGeometry = new THREE.PlaneGeometry(4, 0.43, 1, 1);
     spriteTexture = new THREE.TextureLoader().load("img/design/panelFrame.png");
-    spriteMaterial = new THREE.MeshBasicMaterial({ map: spriteTexture, transparent: true });
+    spriteMaterial = new THREE.MeshBasicMaterial({ map: spriteTexture, transparent: true});
     spriteMesh = new THREE.Mesh(spriteGeometry, spriteMaterial);
     spriteMesh.rotation = 0.1 * Math.PI;
-    spriteMesh.scale.y = -1;
+    //spriteMesh.scale.y = -1;
     //spriteMesh.scale.x = -1;
     spriteMesh.position.y = -0.05;
     otherScene.add(spriteMesh);
@@ -68,6 +69,7 @@ function initControlPanel() {
         spriteMesh = new THREE.Mesh(spriteGeometry, spriteMaterial);
         spriteMesh.position.x = panelIcon[i].coords.x;
         spriteMesh.userData = { type: panelIcon[i].name };
+        spriteMesh.scale.y = -1;
         //console.log(spriteMesh.userData);
         otherScene.add(spriteMesh);
         buttons.push(spriteMesh);
@@ -75,13 +77,14 @@ function initControlPanel() {
 }
 
 function preInitMap() {
+    
     anotherScene = new THREE.Scene();
     anotherCamera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
     anotherCamera.position.z = 5;
     anotherCamera.position.y = 0.98;
 
     if (window.innerHeight > window.innerWidth) {
-        anotherCamera.position.z = 7;
+        anotherCamera.position.z = 8;
         anotherCamera.position.y = 1.68;
     }
 }
@@ -91,18 +94,18 @@ function initMap() {
 
     spriteGeometry = new THREE.PlaneGeometry(3.4, 1.5, 1, 1);
     spriteTexture = new THREE.TextureLoader().load("img/design/mapFrame.png");
-    spriteMaterial = new THREE.MeshBasicMaterial({ map: spriteTexture, transparent: true, color: 0xffffff });
+    spriteMaterial = new THREE.MeshBasicMaterial({ map: spriteTexture, transparent: true });
     spriteMesh = new THREE.Mesh(spriteGeometry, spriteMaterial);
-    spriteMesh.scale.y = -1;
+    //spriteMesh.scale.y = -1;
     spriteMesh.position.x = -0.3;
     spriteMesh.position.y = 0.095;
     anotherScene.add(spriteMesh);
 
     spriteGeometry = new THREE.PlaneGeometry(3.3, 1.1, 1, 1);
-    spriteTexture = new THREE.TextureLoader().load("img/design/map.png");
-    spriteMaterial = new THREE.MeshBasicMaterial({ map: spriteTexture, transparent: true });
+    spriteTexture = new THREE.TextureLoader().load("img/design/map1.png");
+    spriteMaterial = new THREE.MeshBasicMaterial({ map: spriteTexture, transparent: true});
     spriteMesh = new THREE.Mesh(spriteGeometry, spriteMaterial);
-    spriteMesh.scale.y = -1;
+    //spriteMesh.scale.y = -1;
     spriteMesh.position.x = -0.3;
     spriteMesh.position.y = 0.18;
     anotherScene.add(spriteMesh);
@@ -115,7 +118,7 @@ function initMap() {
         spriteMesh.position.x = mapPoint[i].coords.x - 0.3;
         spriteMesh.position.y = mapPoint[i].coords.y + 0.18;
         spriteMesh.position.z = mapPoint[i].coords.z;
-        spriteMesh.scale.y = -1;
+        //spriteMesh.scale.y = -1;
         spriteMesh.userData = { name: mapPoint[i].name };
 
         if (currentView.name == spriteMesh.userData.name) {
@@ -150,7 +153,7 @@ function initSphere() {
     geometry = new THREE.SphereGeometry(10, 50, 50);
 
     for (var i = 0; i < views.length; i++) {
-        if (views[i].name == "HallReception") {
+        if (views[i].name == "Hall1") {
             currentView = views[i];
             break;
         }

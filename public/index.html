@@ -6,14 +6,16 @@
 	<title>Виртуальная экскурсия по ККМБ</title>
 	<style>
 		body {
-			margin: 0px;
 			overflow: hidden;
 
-			background: url(img/libW1.jpg) no-repeat;
+			background: url(img/libW.jpg);
 
 			background-attachment: fixed;
 			background-size: cover;
-			background-position-y: 50%;
+			
+			
+			background-position-y: center;
+			background-position-x: center;
 		}
 
 		canvas {
@@ -46,11 +48,15 @@
 <body>
 	<script src="libs/jquery-3.3.1.js"></script>
 	<div></div>
-	<div id="link"> 
-		<a href="tour.html"><img src="img/icons/link.png" width="50" height="50"></a>
+	<div id="link">
+		<a href="tour.html"><img src="img/icons/link.png" width="100" height="100"></a>
 	</div>
 
 	<script>
+		if (window.innerHeight > window.innerWidth) {
+			$('body').css('background', 'url(img/libH.jpg)');
+			//console.log("higher");
+		} 
 	</script>
 
 	<div id="footer"><b>Виртуальная экскурсия по ККМБ</b></div>

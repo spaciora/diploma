@@ -44,14 +44,22 @@ function onPointerStart(event) {
                     CONTROLS.saveState();
                     CONTROLS.reset();
                     $('#modal').iziModal('resetContent');
+                    /*$('#modal').iziModal({
+                        iframe: true,
+                        iframeURL: intersects[0].object.userData.URL,
+                        iframeHeight: 500,
+                        iframeWidth: 200,
+                    });*/
+
                     $('#modal').iziModal('setHeaderColor', "#ee5f00");
-                    $('#modal').iziModal('setTitle', 'Big title');
-                    $('#modal').iziModal('setSubtitle', "Info from User.Data = " + intersects[0].object.userData.URL);
+                    $('#modal').iziModal('setTitle', intersects[0].object.userData.title);
                     $('#modal').iziModal('setTransitionIn', 'fadeInRight');
-                    //var file = intersects[0].object.userData.URL;
-                    //var file = "https://docs.google.com/viewerng/viewer?url=https://cit.tsn.47edu.ru/doc/Programma_provedenia_regionalnykh_UTS_24_11_2018.docx&embedded=true";
+
                     $('#modal').iziModal('setContent',
-                        '<iframe height=500rem width=100% src="https://docs.google.com/viewerng/viewer?url=https://cit.tsn.47edu.ru/doc/Programma_provedenia_regionalnykh_UTS_24_11_2018.docx&embedded=true"></iframe>');
+                        '<iframe id="infoFrame" height=500rem width=100% src=""></iframe>'
+                    );
+                    $('#infoFrame').attr('src', intersects[0].object.userData.URL);
+                    //document.getElementById("infoFrame").setAttribute('src', intersects[0].object.userData.URL);
 
                     $('#modal').iziModal('open');
 
@@ -134,42 +142,9 @@ function onPointerMove(event) {
             }
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
 
 function onDocumentMouseWheel(event) {
-
     var fov = camera.fov + event.deltaY * 0.03;
     camera.fov = THREE.Math.clamp(fov, 10, 75);
     camera.updateProjectionMatrix();
@@ -177,6 +152,9 @@ function onDocumentMouseWheel(event) {
 }
 
 function onWindowResize() {
+    //initControlPanel();
+    //preInitMap();
+
     renderer.setSize(window.innerWidth, window.innerHeight);
 
     camera.aspect = window.innerWidth / window.innerHeight;
